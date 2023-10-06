@@ -1,0 +1,167 @@
+/* base */
+@import url("https://webfontworld.github.io/pretendard/Pretendard.css");
+/* @font-face {
+  font-family: "Noto Sans KR";
+  src: url("./NotoSansKR-Regular-Hestia.otf");
+} */
+
+*:not(svg) {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Pretendard";
+  color: #333;
+}
+
+.bodyContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 1000px;
+}
+
+.relative {
+  position: relative;
+  min-height: calc(100% - 149px);
+  overflow-x: hidden;
+}
+.checked path {
+  color: inherit;
+  border: 1px solid #dddddd;
+}
+
+.checked span {
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+p,
+pre {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Pretendard";
+}
+p + p {
+  margin-top: 0px;
+}
+img {
+  border: none;
+  vertical-align: bottom;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+address {
+  font-style: normal;
+}
+fieldset {
+  border: none;
+}
+legend {
+  position: absolute;
+  left: -999em;
+}
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="image"],
+button {
+  cursor: pointer;
+}
+label.away {
+  position: absolute;
+  left: -999em;
+}
+
+body {
+  background: #ffffff;
+  height: auto;
+  min-height: 100vh;
+}
+
+body > div,
+body > div > div {
+  height: inherit;
+}
+
+.rs-picker-daterange-panel,
+.rs-anim-fade.rs-anim-in {
+  height: fit-content;
+  z-index: 999;
+}
+
+textarea {
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+td {
+  border: 1px solid;
+}
+
+input[type="checkbox"] {
+  outline: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  vertical-align: bottom;
+  position: relative;
+}
+
+input[type="checkbox"]:hover {
+  /* border-color: rgba(170, 170, 170, 0.5); */
+}
+input[type="checkbox"]::after {
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  border-radius: 2px;
+  content: "";
+  display: none;
+  height: 80%;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(40deg);
+  width: 30%;
+}
+
+input[type="checkbox"]::before {
+  content: "2713";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  transform: scale(0) translate(-50%, -50%);
+  border: 1px solid #dddddd;
+  outline: 1px solid #dddddd;
+  line-height: 1;
+}
+
+input[type="checkbox"]:checked {
+  background: #007aff;
+}
+input[type="checkbox"]:checked::after {
+  display: block;
+}
+
+input[type="checkbox"]:disabled {
+  background: #eeeeee;
+}

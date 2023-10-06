@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16" href="" />
+    <link rel="icon" sizes="152x152" href="" />
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+    <meta name="theme-color" content="#000000" />
+    <script>
+      /* ie 지원을 안할 경우 아래 코드로 처리 */
+      document.addEventListener("DOMContentLoaded", function() {
+        const agent = navigator.userAgent.toLowerCase();
+        if ((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
+          var div = document.getElementById("root");
+        }
+      });
+    </script>
+    <title></title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

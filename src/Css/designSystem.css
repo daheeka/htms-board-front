@@ -1,0 +1,622 @@
+/* == Typography 정의 == */
+
+/* Title */
+.titleH1 {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 48px;
+  line-height: 72px;
+  font-family: "Pretendard";
+}
+.titleH2 {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 54px;
+  font-family: "Pretendard";
+}
+
+.titleH3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 48px;
+  font-family: "Pretendard";
+}
+.titleH4 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  font-family: "Pretendard";
+}
+.subtitleRegular {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  font-family: "Pretendard";
+}
+.subtitleBold {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  font-family: "Pretendard";
+}
+
+/* Body */
+.body1Regular {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Pretendard";
+}
+.body1Bold {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Pretendard";
+}
+.body2Regular {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  font-family: "Pretendard";
+}
+.body2Bold {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  font-family: "Pretendard";
+}
+
+/* Caption */
+.captionRegular {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: "Pretendard";
+}
+.captionBold {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: "Pretendard";
+}
+
+/* Button */
+.btnL {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: "Pretendard";
+}
+.btnM {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Pretendard";
+}
+
+/* == Color 정의 == */
+
+/* background-color */
+
+.primary50 {
+  background: #eff7ff;
+}
+
+.primary100 {
+  background: #d6eaff;
+}
+
+.primary200 {
+  background: #b2d7ff;
+}
+
+.primary300 {
+  background: #81beff;
+}
+
+.primary400 {
+  background: #469fff;
+}
+
+.primary500 {
+  background: #007aff;
+}
+
+.primary600 {
+  background: #0063cf;
+}
+
+.primary700 {
+  background: #004ea3;
+}
+
+.primary800 {
+  background: #003c7e;
+}
+
+.primary900 {
+  background: #002c5c;
+}
+
+.secondaryMain {
+  background: #0b3f98;
+}
+
+.supportPink {
+  background: #fe5493;
+}
+
+.grayScale0 {
+  background: #ffffff;
+}
+
+.grayScale100 {
+  background: #f5f5f5;
+}
+
+.grayScale200 {
+  background: #ededed;
+}
+
+.grayScale300 {
+  background: #e9e9e9;
+}
+
+.grayScale400 {
+  background: #dddddd;
+}
+
+.grayScale500 {
+  background: #cccccc;
+}
+
+.grayScale600 {
+  background: #999999;
+}
+
+.grayScale700 {
+  background: #666666;
+}
+
+.grayScale800 {
+  background: #5f5f5f;
+}
+
+.grayScale900 {
+  background: #333333;
+}
+
+.error50 {
+  background: #fff1f2;
+}
+
+.error100 {
+  background: #ffe4e6;
+}
+
+.error200 {
+  background: #fecdd3;
+}
+
+.error300 {
+  background: #fda4af;
+}
+
+.error400 {
+  background: #fb7185;
+}
+
+.error500 {
+  background: #f43f5e;
+}
+
+.error600 {
+  background: #e11d48;
+}
+
+.error700 {
+  background: #be123c;
+}
+
+.error800 {
+  background: #9f1239;
+}
+
+.error900 {
+  background: #881337;
+}
+
+.success50 {
+  background: #ecfdf5;
+}
+
+.success100 {
+  background: #d1fae5;
+}
+
+.success200 {
+  background: #a7f3d0;
+}
+
+.success300 {
+  background: #6ee7b7;
+}
+
+.success400 {
+  background: #34d399;
+}
+
+.success500 {
+  background: #10b981;
+}
+
+.success600 {
+  background: #059669;
+}
+
+.success700 {
+  background: #047857;
+}
+
+.success800 {
+  background: #065f46;
+}
+
+.success900 {
+  background: #064e3b;
+}
+
+/* text color */
+
+.textPrimary50 {
+  color: #eff7ff;
+}
+
+.textPrimary100 {
+  color: #d6eaff;
+}
+
+.textPrimary200 {
+  color: #b2d7ff;
+}
+
+.textPrimary300 {
+  color: #81beff;
+}
+
+.textPrimary400 {
+  color: #469fff;
+}
+
+.textPrimary500 {
+  color: #007aff;
+}
+
+.textPrimary600 {
+  color: #0063cf;
+}
+
+.textPrimary700 {
+  color: #004ea3;
+}
+
+.textPrimary800 {
+  color: #003c7e;
+}
+
+.textPrimary900 {
+  color: #002c5c;
+}
+
+.textSecondaryMain {
+  color: #0b3f98;
+}
+
+.textSupportPink {
+  color: #fe5493;
+}
+
+.textGrayScale0 {
+  color: #ffffff;
+}
+
+.textGrayScale100 {
+  color: #f5f5f5;
+}
+
+.textGrayScale200 {
+  color: #ededed;
+}
+
+.textGrayScale300 {
+  color: #e9e9e9;
+}
+
+.textGrayScale400 {
+  color: #dddddd;
+}
+
+.textGrayScale500 {
+  color: #cccccc;
+}
+
+.textGrayScale600 {
+  color: #999999;
+}
+
+.textGrayScale700 {
+  color: #666666;
+}
+
+.textGrayScale800 {
+  color: #5f5f5f;
+}
+
+.textGrayScale900 {
+  color: #333333;
+}
+
+.textError50 {
+  color: #fff1f2;
+}
+
+.textError100 {
+  color: #ffe4e6;
+}
+
+.textError200 {
+  color: #fecdd3;
+}
+
+.textError300 {
+  color: #fda4af;
+}
+
+.textError400 {
+  color: #fb7185;
+}
+
+.textError500 {
+  color: #f43f5e;
+}
+
+.textError600 {
+  color: #e11d48;
+}
+
+.textError700 {
+  color: #be123c;
+}
+
+.textError800 {
+  color: #9f1239;
+}
+
+.textError900 {
+  color: #881337;
+}
+
+.textSuccess50 {
+  color: #ecfdf5;
+}
+
+.textSuccess100 {
+  color: #d1fae5;
+}
+
+.textSuccess200 {
+  color: #a7f3d0;
+}
+
+.textSuccess300 {
+  color: #6ee7b7;
+}
+
+.textSuccess400 {
+  color: #34d399;
+}
+
+.textSuccess500 {
+  color: #10b981;
+}
+
+.textSuccess600 {
+  color: #059669;
+}
+
+.textSuccess700 {
+  color: #047857;
+}
+
+.textSuccess800 {
+  color: #065f46;
+}
+
+.textSuccess900 {
+  color: #064e3b;
+}
+
+.decoration_underline {
+  text-decoration: underline;
+}
+
+.fileInput {
+  position: absolute;
+  width: 100%;
+  padding: 24px 100px;
+  top: 0px;
+  left: 0px;
+  height: 94px;
+  display: none;
+  cursor: pointer;
+  /* //영역은 있지만 투명하게 (드래그앤드롭하려고 넣음)
+  opacity: 0;
+  filter: alpha(opacity=0); */
+}
+
+/* ------------------------------------------------------------------ */
+
+/* 캘린더 */
+.calendarInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dddddd;
+  background: #ffffff;
+  border-radius: 5px;
+  width: 150px;
+  padding: 8px;
+  cursor: pointer;
+  justify-content: space-between;
+  position: relative;
+}
+
+.placeholder {
+  color: #cccccc;
+}
+
+.calendarInput:hover, .calendarInput:hover > div, .calendarInput:hover > input {
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.calendarInput > div, .calendarInput > input {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.calendarInput > input {
+  border: none;
+  width: 100%;
+}
+
+.calendarInput > input:focus, .calendarInput > input:active {
+  border : none;
+  outline: none;
+}
+
+.calendarInput > img {
+  width: 20px;
+  height: 20px;
+}
+
+.calendarDisabled, .calendarDisabled > div, .calendarDisabled > input {
+  background: #f5f5f5;
+  cursor: inherit;
+}
+
+.rs-picker-default .rs-picker-toggle {
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  width: 165px;
+  height: 36px;
+}
+.rs-picker-toggle-placeholder {
+  color: #333333;
+}
+
+.rs-picker-menu .rs-picker-toolbar {
+  display: none;
+}
+
+.displayFlex {
+  display: flex;
+  align-items: center;
+  /* gap: 3px; */
+}
+
+.displayFlexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.displayFlexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.noneScroll::-webkit-scrollbar {
+  display: none;
+}
+.noneScroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.modalOverlay {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.loadingImg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modalInner {
+  padding: 10px 10px 40px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 850px;
+  height: 500px;
+  background: #ffffff;
+  margin: 0 auto;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.modalInner > .closeImg {
+  cursor: pointer;
+}
+.modalInner::-webkit-scrollbar {
+  display: none;
+}
+
+
+.scrollbar::-webkit-scrollbar,
+.scrollSection::-webkit-scrollbar {
+  height: 10px; /* 스크롤바의 너비 */
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+.scrollbar::-webkit-scrollbar-thumb,
+.scrollSection::-webkit-scrollbar-thumb {
+  width: 35%; /* 스크롤바의 길이 */
+  background: #dddddd; /* 스크롤바의 색상 */
+}
+
+.scrollbar::-webkit-scrollbar-track,
+.scrollSection::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
