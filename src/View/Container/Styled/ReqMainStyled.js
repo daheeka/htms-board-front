@@ -18,6 +18,7 @@ export const ReqMainStyled = Styled.div`
         gap: 20px;
         height: 37px;
         justify-content: space-between;
+        margin-bottom: 10px;
     }
     .layoutRow {
         display: flex;
@@ -31,6 +32,16 @@ export const ReqMainStyled = Styled.div`
             filter: invert(42%) sepia(99%) saturate(5704%) hue-rotate(209deg) brightness(100%) contrast(105%);
         }
     }
+    .layoutRow_select {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 0px;
+        cursor: pointer;
+        border-bottom: 2px solid var(--primary-500, #0069FF);
+        filter: invert(42%) sepia(99%) saturate(5704%) hue-rotate(209deg) brightness(100%) contrast(105%);
+    }
     .btnRow {
         display: flex;
         flex-direction: row;
@@ -43,13 +54,15 @@ export const ReqMainStyled = Styled.div`
         align-items: center;
         gap: 16px;
     }
+    .tableGap {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
     .contentsCol {
         display: flex;
         flex-direction: column;
         gap: 30px;
-    }
-    .chipText {
-        color: #666666;
     }
     .line {
         width: 1px;

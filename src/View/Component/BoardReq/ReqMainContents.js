@@ -3,7 +3,7 @@ import SearchBox from "../../Common/SearchBox";
 import iconSrc from "../../../Image/payday_common_icon16_search_gray0.svg";
 import SelectTableSection from "./SelectTableSection";
 
-const ReqMainContents = ({ date, setDate }) => {
+const ReqMainContents = ({ date, setDate, boardReqList }) => {
   const onSearch = () => {
     const startDate = date.startDate.replaceAll("-", "");
     const endDate = date.endDate.replaceAll("-", "");
@@ -30,7 +30,7 @@ const ReqMainContents = ({ date, setDate }) => {
           variant: "basic",
         }}
       />
-      <SelectTableSection />
+      <SelectTableSection boardReqList={boardReqList} />
     </div>
   );
 };

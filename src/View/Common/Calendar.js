@@ -12,10 +12,6 @@ const CustomRangeCalendar = ({
   value = ["", ""],
   placement = "bottom",
 }) => {
-  useEffect(() => {
-    handleScroll(open);
-  }, [open]);
-
   const prevDate = new Date();
   const prevDate01 = new Date();
   const prevDate02 = new Date();
@@ -92,9 +88,6 @@ export const CustomCalendar = ({
   hDate = false,
   onSelect,
 }) => {
-  //   useEffect(() => {
-  //     handleScroll(open);
-  //   }, [open]);
   return (
     <>
       {!open ? (

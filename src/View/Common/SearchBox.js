@@ -62,15 +62,15 @@ const SearchBox = ({
       startDate: getFormatDate(stDate, "-"),
       endDate: getFormatDate(lastDayOfMonth, "-"),
     });
-    const newClassNames = [...classNames];
-    newClassNames[selectedItem] = "monthBtn body2Bold";
-    setClassNames(newClassNames);
-    if (i + 1 == month) {
-      // 일단 나중에
-      const newClassNames = [...classNames];
-      newClassNames[i] = "monthBtn02 body2Bold";
-      setClassNames(newClassNames);
-    }
+    // const newClassNames = [...classNames];
+    // newClassNames[selectedItem] = "monthBtn body2Bold";
+    // setClassNames(newClassNames);
+    // if (i + 1 == month) {
+    //   // 일단 나중에
+    //   const newClassNames = [...classNames];
+    //   newClassNames[i] = "monthBtn02 body2Bold";
+    //   setClassNames(newClassNames);
+    // }
   };
   return (
     <SearchStyled>
