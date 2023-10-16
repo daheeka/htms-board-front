@@ -9,6 +9,7 @@ const HeaderContainer = () => {
     { title: "처리중", active: false, num: "1" },
     { title: "처리완료", active: false, num: "2" },
   ];
+  const handleclick = () => {};
   return (
     <HeaderStyled>
       <HeaderContents menuList={menuList} />

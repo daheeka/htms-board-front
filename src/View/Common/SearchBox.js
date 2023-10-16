@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { DatePicker } from "rsuite";
 import { SearchStyled } from "./Styled/SearchStyled";
 import { CustomCalendar } from "./Calendar";
 import { getFormatDate } from "./Common";
@@ -72,6 +71,7 @@ const SearchBox = ({
     //   setClassNames(newClassNames);
     // }
   };
+  const handleChange = (e) => {};
   return (
     <SearchStyled>
       <div className="searchRow">
@@ -116,11 +116,10 @@ const SearchBox = ({
           </select>
         </div>
         <TextField
-          // onChange={onChange}
+          onChange={(e) => handleChange(e.target.value)}
           // value={inputValue}
           width={inputWidth}
           variant={variant}
-          // variant={inputVariant}
           placeholder={placeholder}
           // onKeyUp={onClick}
         />

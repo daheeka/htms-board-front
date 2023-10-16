@@ -87,6 +87,12 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
       setCheckedArr([]);
     }
   };
+  const handleReply = (num) => {
+    const items = Array.from({ length: num - 1 }, (_, index) => (
+      <p key={index}></p>
+    ));
+    return items;
+  };
   useEffect(() => {
     setCheckItems(setCheckList);
     setBoardDataList(boardReqList);
@@ -109,7 +115,11 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
         ))}
       </TableTr>
       {boardDataList.map((item, idx) => (
-        <TableTr check={checkItems.includes(boardDataList[idx].boardSeq)} table>
+        <TableTr
+          check={checkItems.includes(boardDataList[idx].boardSeq)}
+          answer={item.pos !== "0"}
+          table
+        >
           {tHeadList.map((head, idex) => (
             <>
               {idex === 0 && (
@@ -152,6 +162,59 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                   table
                 >
                   <p className="body2Regular">{cntSlice[idx]}</p>
+                </TableTd>
+              )}
+              {idex === 3 && (
+                <TableTd
+                  key={idx}
+                  style={{
+                    width: tHeadList[idex].width,
+                    minHeight: "34px",
+                  }}
+                  first={idex === 0}
+                  check={idex === 0}
+                  table
+                >
+                  <>
+                    {item.pos === "0" ? (
+                      <p className="body2Regular">{item[head.key]}</p>
+                    ) : item.pos === "1" ? (
+                      <div className="rowFlowGap02">
+                        <div className="rowFlowGap02">
+                          <p className="chipText">답변</p>
+                          <p
+                            className="body2Regular"
+                            style={{ marginTop: "0px" }}
+                          >
+                            {item[head.key]}
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="rowFlowGap02">
+                        {handleReply(item.pos)}
+                        <div className="rowFlowGap02">
+                          <p className="chipText">답변</p>
+                          <p
+                            className="body2Regular"
+                            style={{ marginTop: "0px" }}
+                          >
+                            {item[head.key]}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                    <div className="rowFlowGap">
+                      <p className="replyCnt captionBold">{item.reply}</p>
+                      {item.file === true ? (
+                        <>
+                          <img src={fileIcon} className="file" />
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </>
                 </TableTd>
               )}
               {idex === 5 && (
@@ -245,6 +308,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
               )}
               {idex !== 0 &&
                 idex !== 1 &&
+                idex !== 3 &&
                 idex !== 5 &&
                 idex !== tHeadList.length - 1 && (
                   <TableTd
@@ -257,8 +321,30 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                     check={idex === 0}
                     table
                   >
+                    {/* {idex === 3 && (
+                      <>
+                        {item.pos === "0" ? (
+                          <p className="body2Regular">{item[head.key]}</p>
+                        ) : item.pos === "1" ? (
+                          <div className="rowFlowGap02">
+                            <div className="rowFlowGap02">
+                              <p className="chipText">답변</p>
+                              <p className="body2Regular">{item[head.key]}</p>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="rowFlowGap02">
+                            {handleReply(item.pos)}
+                            <div className="rowFlowGap02">
+                              <p className="chipText">답변</p>
+                              <p className="body2Regular">{item[head.key]}</p>
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    )} */}
                     <p className="body2Regular">{item[head.key]}</p>
-                    {idex === 3 && (
+                    {/* {idex === 3 && (
                       <div className="rowFlowGap">
                         <p className="replyCnt captionBold">{item.reply}</p>
                         {item.file === true ? (
@@ -269,7 +355,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                           <></>
                         )}
                       </div>
-                    )}
+                    )} */}
                   </TableTd>
                 )}
             </>

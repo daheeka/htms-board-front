@@ -16,7 +16,7 @@ export const TextFieldStyeld = styled.input`
   font-size: ${(props) => props.fontSize};
 
   ::placeholder {
-    color: #999;
+    color: #cccccc;
   }
 
   ${(props) =>

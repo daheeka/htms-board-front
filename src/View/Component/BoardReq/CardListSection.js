@@ -22,6 +22,12 @@ const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
       setCheckedArr(checkedArr.filter((el) => el !== item));
     }
   };
+  const handleReply = (num) => {
+    const items = Array.from({ length: num - 1 }, (_, index) => (
+      <p key={index}></p>
+    ));
+    return items;
+  };
   useEffect(() => {
     setCheckItems(setCheckList);
     setBoardDataList(boardReqList);
@@ -29,7 +35,10 @@ const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
   return (
     <>
       {boardDataList.map((item, idx) => (
-        <TableTr check={checkItems.includes(boardDataList[idx].boardSeq)}>
+        <TableTr
+          answer={item.pos !== "0"}
+          check={checkItems.includes(boardDataList[idx].boardSeq)}
+        >
           <TableTd>
             <input
               type="checkbox"
@@ -43,9 +52,30 @@ const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
             />
             <div>
               <p className="captionRegular">{item.workType}</p>
-              <p className="body1Regular" style={{ marginTop: "0px" }}>
-                {item.title}
-              </p>
+              {item.pos === "0" ? (
+                <p className="body1Regular" style={{ marginTop: "0px" }}>
+                  {item.title}
+                </p>
+              ) : item.pos === "1" ? (
+                <div className="rowFlowGap02">
+                  <div className="rowFlowGap02">
+                    <p className="chipText">답변</p>
+                    <p className="body1Regular" style={{ marginTop: "0px" }}>
+                      {item.title}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div className="rowFlowGap02">
+                  {handleReply(item.pos)}
+                  <div className="rowFlowGap02">
+                    <p className="chipText">답변</p>
+                    <p className="body1Regular" style={{ marginTop: "0px" }}>
+                      {item.title}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </TableTd>
           <TableTd width process={boardDataList[idx].status}>

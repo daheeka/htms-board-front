@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom";
 import { AppContext } from "../AppContext";
 import { Route } from "react-router";
 
-import Main from "./Main";
 import ReqMainContainer from "./Container/BoardReq/reqMainContainer";
 import HeaderContainer from "./Container/HeaderContainer";
+import WriteMainContainer from "./Container/BoardWrite/WriteMainContainer";
 
 const MainRoute = () => {
   const { login, setLogin } = useContext(AppContext);
@@ -19,6 +19,7 @@ const MainRoute = () => {
     <div id="bodyContainer">
       <HeaderContainer />
       <Route path={["/", "/Main"]} component={ReqMainContainer} exact={true} />
+      <Route path={"/boardWrite"} component={WriteMainContainer} />
     </div>
   );
 };

@@ -16,6 +16,7 @@ const ReqMainContents = ({ date, setDate, boardReqList }) => {
     console.log("startDate", startDate);
     console.log("endDate", endDate);
   };
+  const onChange = (e) => {};
   return (
     <div className="contentsCol">
       <SearchBox

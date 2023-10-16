@@ -2,26 +2,25 @@ import Styled, { css } from "styled-components";
 
 export const TableTrStyled = Styled.div`
     display: flex;
-    /* flex-direction: row; */
     width: 100%;
-    gap: ${(props) => (props.table ? "0px;" : "20px;")};
+    gap: ${(props) => (props.table == true ? "0px;" : "20px;")};
     justify-content: space-between;
     max-width: 1200px;
 
-    padding: ${(props) => (props.table ? "0px;" : "10px 20px;")};
+    padding: ${(props) => (props.table == true ? "0px;" : "10px 20px;")};
     border-bottom: 1px solid var(--gray-scale-400, #DDD);
     ${(props) =>
-      props.border &&
+      props.border == true &&
       css`
         border-top: 1px solid #dddddd;
       `}
-      ${(props) =>
-        props.check &&
-        css`
-          background: #eff7ff;
-        `}
     ${(props) =>
-      props.first &&
+      props.check == true &&
+      css`
+        background: #eff7ff;
+      `}
+    ${(props) =>
+      props.first == true &&
       css`
         background: #f5f5f5;
         padding: 0px 12px;
@@ -31,6 +30,11 @@ export const TableTrStyled = Styled.div`
         background: #EFF7FF;
         transition: 0.3s;
       }
+    ${(props) =>
+      props.answer == true &&
+      css`
+        background: #f9f9f9;
+      `}
 
 `;
 
@@ -40,22 +44,22 @@ export const TableTdStyled = Styled.div`
     gap: 20px;
     max-width: 746px;
     ${(props) =>
-      props.table &&
+      props.table == true &&
       css`
         border-left: 1px solid var(--gray-scale-400, #ddd);
         padding: 0px 8px;
         justify-content: space-between;
       `}
     ${(props) =>
-      props.check &&
+      props.check == true &&
       css`
         justify-content: center;
       `}
-      ${(props) =>
-        props.width &&
-        css`
-          min-width: fit-content;
-        `}
+    ${(props) =>
+      props.width == true &&
+      css`
+        min-width: fit-content;
+      `}
       .tableHeadText {
         color: #545454;
         font-family: "Pretendard";
@@ -95,6 +99,7 @@ export const TableTdStyled = Styled.div`
         font-weight: 500;
         line-height: 16px;
         border-radius: 3px;
+        height : 16px;
         background : ${(props) =>
           props.chipcolor === "red" ? "#FB7185" : "#545454"};
       }
@@ -127,6 +132,12 @@ export const TableTdStyled = Styled.div`
         display: flex;
         flex-direction: row;
         gap: 5px;
+      }
+      .rowFlowGap02 {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
       }
       input[type='checkbox'] {
         min-width : 16px;

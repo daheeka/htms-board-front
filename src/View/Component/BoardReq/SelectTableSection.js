@@ -103,7 +103,7 @@ const SelectTableSection = ({ boardReqList }) => {
           />
         </div>
       </div>
-      <TableTr border="true" first="true">
+      <TableTr border={true} first={true}>
         <TableTd chipcolor="red">
           <p className="chipText">공지사항</p>
           <p className="body2Regular" style={{ marginTop: "0px" }}>
@@ -111,7 +111,7 @@ const SelectTableSection = ({ boardReqList }) => {
           </p>
         </TableTd>
       </TableTr>
-      <TableTr first="true">
+      <TableTr first={true}>
         <TableTd chipcolor="red">
           <p className="chipText">공지사항</p>
           <p className="body2Regular" style={{ marginTop: "0px" }}>

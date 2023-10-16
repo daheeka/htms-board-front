@@ -7,9 +7,16 @@ export const TableTr = ({
   check = false,
   first = false,
   table = false,
+  answer = false,
 }) => {
   return (
-    <TableTrStyled border={border} check={check} first={first} table={table}>
+    <TableTrStyled
+      border={border}
+      check={check}
+      first={first}
+      table={table}
+      answer={answer}
+    >
       {children}
     </TableTrStyled>
   );
