@@ -14,10 +14,12 @@ const Button = ({
   shadow,
   style,
   className,
+  width,
 }) => {
   return (
     <ButtonStyled
       size={size}
+      width={width}
       variant={variant}
       disabled={disabled}
       color={color}

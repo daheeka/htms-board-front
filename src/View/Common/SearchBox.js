@@ -4,6 +4,7 @@ import { CustomCalendar } from "./Calendar";
 import { getFormatDate } from "./Common";
 import TextField from "./TextField";
 import Button from "./Button";
+import SelectBox from "./SelectBox";
 
 const SearchBox = ({
   date,
@@ -19,19 +20,20 @@ const SearchBox = ({
     String(index + 1).padStart(2, "0")
   );
   const selectArry = [
-    "월별인사변동자료",
-    "월별급여변동자료",
-    "원천신고자료관련",
-    "4대보험관련",
-    "급여확인작업",
-    "제증명관련",
-    "퇴직금관련",
-    "경조발생관련",
-    "연말정산관련",
-    "전표처리관련",
-    "퇴직금 중간신청",
-    "퇴직금 계산 완료",
-    "기타",
+    { value: "", name: "전체" },
+    { value: "1", name: "월별인사변동자료" },
+    { value: "2", name: "월별급여변동자료" },
+    { value: "3", name: "원천신고자료관련" },
+    { value: "4", name: "4대보험관련" },
+    { value: "5", name: "급여확인작업" },
+    { value: "6", name: "제증명관련" },
+    { value: "7", name: "퇴직금관련" },
+    { value: "8", name: "경조발생관련" },
+    { value: "9", name: "연말정산관련" },
+    { value: "10", name: "전표처리관련" },
+    { value: "11", name: "퇴직금 중간신청" },
+    { value: "12", name: "퇴직금 계산 완료" },
+    { value: "99999999", name: "기타" },
   ];
   const [startOpen, setStartOpen] = useState(false);
   const [endOpen, setEndOpen] = useState(false);
@@ -103,18 +105,13 @@ const SearchBox = ({
         </div>
       </div>
       <div className="searchRow02">
-        <div className="selectDiv">
-          <select className="select">
-            <option value="1" defaultValue={true}>
-              전체
+        <SelectBox>
+          {selectArry.map((v, i) => (
+            <option value={v.value} key={i}>
+              {v.name}
             </option>
-            {selectArry.map((v, i) => (
-              <option value={i + 2} key={i}>
-                {v}
-              </option>
-            ))}
-          </select>
-        </div>
+          ))}
+        </SelectBox>
         <TextField
           onChange={(e) => handleChange(e.target.value)}
           // value={inputValue}

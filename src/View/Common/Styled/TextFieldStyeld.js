@@ -7,7 +7,7 @@ export const TextFieldStyeld = styled.input`
   font-weight: 400;
   line-height: 20px;
   text-align: left;
-  padding: 3px 10px;
+  padding: 8px;
   border-radius: 3px;
   border: none;
 
@@ -15,18 +15,17 @@ export const TextFieldStyeld = styled.input`
   height: ${(props) => props.height};
   font-size: ${(props) => props.fontSize};
 
-  ::placeholder {
-    color: #cccccc;
-  }
-
   ${(props) =>
     props.size == "large"
       ? css`
-          width: 300px;
-          height: 45px;
-          padding: 12px 20px;
-          border-radius: 10px;
+          font-family: "Pretendard";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
         `
+      : props.size == "medium"
+      ? css``
       : css``}
 
   ${(props) =>
@@ -47,6 +46,10 @@ export const TextFieldStyeld = styled.input`
       : props.variant == "gray"
       ? css`
           background: #ededed;
+        `
+      : props.variant == "basic-none"
+      ? css`
+          background: #ffffff;
         `
       : css`
           background: #f5f5f5;

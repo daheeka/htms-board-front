@@ -6,6 +6,7 @@ import { Route } from "react-router";
 import ReqMainContainer from "./Container/BoardReq/reqMainContainer";
 import HeaderContainer from "./Container/HeaderContainer";
 import WriteMainContainer from "./Container/BoardWrite/WriteMainContainer";
+import ReadMainContainer from "./Container/BoardRead/ReadMainContainer";
 
 const MainRoute = () => {
   const { login, setLogin } = useContext(AppContext);
@@ -20,6 +21,7 @@ const MainRoute = () => {
       <HeaderContainer />
       <Route path={["/", "/Main"]} component={ReqMainContainer} exact={true} />
       <Route path={"/boardWrite"} component={WriteMainContainer} />
+      <Route path={"/boardDetail"} component={ReadMainContainer} />
     </div>
   );
 };

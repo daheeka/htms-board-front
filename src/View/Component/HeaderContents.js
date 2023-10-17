@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import MenuTab from "../Common/MenuTab";
 
 const HeaderContents = ({ menuList }) => {
+  const history = useHistory();
   const [tabList, setTabList] = useState([]);
   const [active, setActive] = useState("");
   useEffect(() => {
@@ -11,9 +13,14 @@ const HeaderContents = ({ menuList }) => {
   }, [menuList, active]);
 
   const handleclick = () => {};
+  const handleMain = () => {
+    history.push("/");
+  };
   return (
     <div className="headerContent">
-      <p className="titleH4">업무요청게시판</p>
+      <p className="titleH4" onClick={handleMain} style={{ cursor: "pointer" }}>
+        업무요청게시판
+      </p>
       <div className="headerNav">
         {tabList.map((item, idx) => (
           <MenuTab

@@ -165,3 +165,7 @@ input[type="checkbox"]:checked::after {
 input[type="checkbox"]:disabled {
   background: #eeeeee;
 }
+
+::placeholder {
+  color: #cccccc;
+}

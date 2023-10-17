@@ -7,7 +7,7 @@ export const ButtonStyled = styled.button`
   align-items: center;
   flex-direction: ${(props) =>
     props.iconlocation == "right" ? "row-reverse" : "row"};
-
+  width: ${(props) => props.width};
   // size
   ${(props) =>
     props.size == "small"
@@ -119,10 +119,18 @@ export const ButtonStyled = styled.button`
           border: 1px solid #eff7ff;
           background: #eff7ff;
           color: #0069ff;
-          :hover {
-            transition: all 0.3s ease 0s;
-            background: #f5f5f5;
-          }
+        `
+      : props.variant == "file"
+      ? css`
+          border: 1px solid var(--primary-300, #81beff);
+          background: var(--gray-scale-0, #fff);
+          color: #0069ff;
+
+          font-family: "Pretendard";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 16px;
         `
       : css`
           .default {

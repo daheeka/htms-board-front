@@ -102,3 +102,11 @@ export const getFormatDate = (date, style = "-", end) => {
     return year + "년 " + month + "월 " + day + "일"; //캘린더에 쓰는거
   else return year + style + month + style + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
 };
+
+export const fixNullString = (args, change) => {
+  if (args == undefined || args == null) {
+    return change;
+  } else {
+    return args.toString();
+  }
+};

@@ -1,13 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Button from "../../Common/Button";
 import { TableTd, TableTr } from "../../Common/Table";
 import { Pagination } from "../../Common/Pagination";
 import CardListSection from "./CardListSection";
 import TableListSection from "./TableListSection";
 import ListTab from "../../Common/ListTab";
-import layoutBoardIcon from "../../../Image/payday_common_icon20_layoutboard_gray700.svg";
-import layoutTableIcon from "../../../Image/payday_common_icon20_layouttable_gray700.svg";
 import plusIcon from "../../../Image/payday_common_icon16_plus_primary500.svg";
 
 const SelectTableSection = ({ boardReqList }) => {
@@ -24,6 +23,7 @@ const SelectTableSection = ({ boardReqList }) => {
   const [numberSlice, setNumberSlice] = useState([]);
   const [cntSlice, setCntSlice] = useState([]);
   const [cardState, setCardState] = useState("1");
+  const history = useHistory();
   useEffect(() => {
     setBoardDataList(boardReqList);
   }, [boardReqList]);
@@ -50,6 +50,9 @@ const SelectTableSection = ({ boardReqList }) => {
       setCheckItems([]);
       setCheckedArr([]);
     }
+  };
+  const handleMove = () => {
+    history.push("/boardWrite");
   };
   return (
     <div>
@@ -91,15 +94,13 @@ const SelectTableSection = ({ boardReqList }) => {
           <Button
             children="게시글추가"
             color="primary50"
-            // onClick={onClick}
-            // color={btnColor}
+            onClick={handleMove}
             iconSrc={plusIcon}
           />
           <Button
             children="선택항목완료"
             color="primary50"
             // onClick={onClick}
-            // color={btnColor}
           />
         </div>
       </div>
