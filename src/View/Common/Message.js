@@ -1,6 +1,6 @@
 import React from "react";
 import { MessageStyled } from "./Styled/MessageStyled";
-import closeIcon from "../../Image/delete.svg";
+import closeIcon from "../../Image/pd_ccm_post_icon_close.svg";
 import Button from "./Button";
 
 const Message = ({

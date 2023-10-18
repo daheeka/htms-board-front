@@ -1,30 +1,64 @@
 import React from "react";
 import Button from "../../Common/Button";
 import ReplySection from "./ReplySection";
+import { Chips, DotChips } from "../../Common/Chips";
 
-const ReadMainContents = () => {
+const ReadMainContents = ({ openMessage }) => {
   return (
     <div className="detailFlowCol">
       <p className="line" style={{ marginTop: "20px" }} />
       <div>
         <div className="detailFlowRow">
           <p>월별인사변동자료</p>
-          <p style={{ marginTop: "0px" }}>답변</p>
+          <Chips value="답변" />
         </div>
         <div className="detailFlowRow">
-          <p>미수신테스트(거래처담당자)</p>
-          <p style={{ marginTop: "0px" }}>미처리</p>
+          <p className="titleText">미수신테스트(거래처담당자)</p>
+          <DotChips process="0" status="미처리" />
         </div>
-        <div className="detailFlowRow">
-          <p>강다희</p>
-          <p style={{ marginTop: "0px" }}>조회 5</p>
-          <p style={{ marginTop: "0px" }}>작성일 2023년 10월 17일 09:36:17</p>
+        <div className="displayFlexBetween">
+          <div className="detailFlowRow">
+            <p className="captionRegular">강다희</p>
+            <p
+              className="captionRegular textGrayScale600"
+              style={{ marginTop: "0px" }}
+            >
+              조회 5
+            </p>
+            <p
+              className="captionRegular textGrayScale600"
+              style={{ marginTop: "0px" }}
+            >
+              작성일 2023년 10월 17일 09:36:17
+            </p>
+          </div>
+          <Button width="fit-content" variant="file">
+            수정
+          </Button>
         </div>
       </div>
       <p className="line" />
       <div className="displayFlexColumn" style={{ gap: "10px" }}>
-        <p>컨텐츠 내용</p>
-        <div className="fileBox"></div>
+        <p className="body2Regular textGrayScale900">
+          테스트 입니다.
+          <br />
+          테스트 입니다.
+          <br />
+          테스트 입니다.
+        </p>
+        <div className="fileBox">
+          <div className="displayFlex" style={{ gap: "10px" }}>
+            <p className="body2Regular textPrimary900">
+              컨셉제안_소득공제마법사 리뉴얼.zip
+            </p>
+            <p
+              className="body2Regular textGrayScale600"
+              style={{ marginTop: "0px" }}
+            >
+              10022KB
+            </p>
+          </div>
+        </div>
       </div>
       <div className="btnFlowRow">
         <Button width="fit-content">답변작성</Button>
@@ -32,7 +66,11 @@ const ReadMainContents = () => {
           목록보기
         </Button>
       </div>
-      <ReplySection />
+      <ReplySection
+        {...{
+          openMessage,
+        }}
+      />
     </div>
   );
 };
