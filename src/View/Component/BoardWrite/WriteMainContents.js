@@ -7,8 +7,9 @@ import SelectBox from "../../Common/SelectBox";
 import TextField from "../../Common/TextField";
 import Button from "../../Common/Button";
 import { getFormatDate } from "../../Common/Common";
-import deleteIcon from "../../../Image/delete.svg";
 import Alert from "../../Common/Alert";
+import Switch from "../../Common/Switch";
+import deleteIcon from "../../../Image/delete.svg";
 
 const WriteMainContents = ({ openMessage }) => {
   const history = useHistory();
@@ -113,7 +114,7 @@ const WriteMainContents = ({ openMessage }) => {
             </option>
           ))}
         </SelectBox>
-        <p>문자발송라디오버튼</p>
+        <Switch label={"문자발송"} />
       </div>
       <div className="headGap">
         <p className="headText">요청 제목</p>

@@ -2,6 +2,7 @@ import React from "react";
 import TextField from "../../Common/TextField";
 import Button from "../../Common/Button";
 import deleteIcon from "../../../Image/payday_common_icon16_delete_primary500.svg";
+import Switch from "../../Common/Switch";
 
 const ReplySection = ({ openMessage }) => {
   return (
@@ -17,7 +18,7 @@ const ReplySection = ({ openMessage }) => {
           <Button width="fit-content" variant="file">
             댓글등록
           </Button>
-          <p>문자발송라디오버튼</p>
+          <Switch label={"문자발송"} />
         </div>
       </div>
       <div style={{ width: "100%" }}>
