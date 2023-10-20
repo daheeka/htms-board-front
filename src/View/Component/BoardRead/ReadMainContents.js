@@ -16,7 +16,7 @@ const ReadMainContents = ({ openMessage }) => {
         </div>
         <div className="detailFlowRow">
           <p className="titleText">미수신테스트(거래처담당자)</p>
-          <DotChips process="0" status="미처리" />
+          <DotChips process="0" />
         </div>
         <div className="displayFlexBetween">
           <div className="detailFlowRow">

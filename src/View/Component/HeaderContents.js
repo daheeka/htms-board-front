@@ -1,18 +1,33 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
+
 import MenuTab from "../Common/MenuTab";
 
 const HeaderContents = ({ menuList }) => {
   const history = useHistory();
+  const loc = useLocation();
   const [tabList, setTabList] = useState([]);
   const [active, setActive] = useState("");
   useEffect(() => {
     setTabList(menuList);
-  }, [menuList, active]);
+    if (loc.pathname === "/boardConfirm") {
+      setActive("2");
+    }
+  }, [menuList, loc]);
 
-  const handleclick = () => {};
+  const handleclick = (num) => {
+    setActive(num);
+    if (num == 2) {
+      history.push("/boardConfirm");
+    } else {
+      history.push("/");
+    }
+  };
   const handleMain = () => {
     history.push("/");
   };
@@ -29,7 +44,7 @@ const HeaderContents = ({ menuList }) => {
               <div className="headerNav">
                 <button
                   className="headerBtn body2Bold"
-                  onClick={() => handleclick()}
+                  onClick={() => handleclick(item.num)}
                 >
                   {item.title}
                 </button>

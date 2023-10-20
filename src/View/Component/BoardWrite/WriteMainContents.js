@@ -1,8 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import JoditEditor from "jodit-pro-react";
 import SelectBox from "../../Common/SelectBox";
 import TextField from "../../Common/TextField";
 import Button from "../../Common/Button";
@@ -11,13 +9,103 @@ import Alert from "../../Common/Alert";
 import Switch from "../../Common/Switch";
 import deleteIcon from "../../../Image/delete.svg";
 
-const WriteMainContents = ({ openMessage }) => {
+const editorConfig = {
+  // buttons: LineButton,
+  extraPlugins: ["pasteCode"],
+  toolbarSticky: false,
+  height: 400,
+  toolbarButtonSize: "small",
+  // autofocus: true,
+  placeholder: "내용을 입력하세요.",
+  allowResizeX: false,
+  allowResizeY: false,
+  showCharsCounter: false,
+  showWordsCounter: false,
+  showXPathInStatusbar: false,
+  uploader: {
+    insertImageAsBase64URI: true,
+    imagesExtensions: ["jpg", "png", "jpeg", "gif"],
+    url: "",
+    // url: "https://xdsoft.net/jodit/finder/?action=fileUpload",
+  },
+
+  // 드래그앤 드롭 막음
+  enableDragAndDropFileToEditor: false,
+
+  processPasteHTML: false,
+
+  /*테이블 옵션 지우는거 */
+  // toolbarInline: false,
+  // toolbarInlineDisableFor: ["table"],
+  toolbarInlineDisabledButtons: ["addcolumn", "addrow"],
+  /* toolbar 지정하는거*/
+  buttons: [
+    "bold",
+    "italic",
+    "underline",
+    "strikethrough",
+    "eraser",
+    "changeCase",
+    "|",
+    "font",
+    "fontsize",
+    "paragraph",
+    "lineHeight",
+    "|",
+    "superscript",
+    "subscript",
+    "|",
+    "spellcheck",
+    "|",
+    "cut",
+    "copy",
+    "paste",
+    "selectall",
+    "|",
+    "hr",
+    "table",
+    "link",
+    "symbols",
+    "emoji",
+    "|",
+    "image",
+    "|",
+    "indent",
+    "outdent",
+    "left",
+    "|",
+    "brush",
+    "|",
+    "undo",
+    "redo",
+    "restore",
+    "|",
+    "find",
+    "google",
+    "|",
+    "preview",
+  ],
+
+  toolbarAdaptive: false,
+  readonly: false,
+  // license: "A01BM-2/862-CTOML-RAL6Y", // localhost용
+  // license: "174FE-0Q6K0-CDLNP-L11RZ", // developers.payday.co.kr
+  // license: "6176S-0Q870-CDNO5-LMBAZ", //reqboard.payday.co.kr
+};
+
+const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
   const history = useHistory();
   const [alert, setAlert] = useState(false);
+  const editorConfigList = useMemo(() => editorConfig, []);
+  const editor = useRef(null);
+  const fileRef = useRef(null);
+  const [fileList, setFileList] = useState([]);
+
   const reqArry = [
     { value: "writer", name: "PP공유" },
     { value: "", name: "전체공유" },
   ];
+
   const selectArry = [
     { value: "", name: "전체" },
     { value: "1", name: "월별인사변동자료" },
@@ -34,8 +122,6 @@ const WriteMainContents = ({ openMessage }) => {
     { value: "12", name: "퇴직금 계산 완료" },
     { value: "99999999", name: "기타" },
   ];
-  const fileRef = useRef(null);
-  const [fileList, setFileList] = useState([]);
 
   const fileHandler = (e) => {
     let fileObj = e.target.files;
@@ -61,6 +147,7 @@ const WriteMainContents = ({ openMessage }) => {
       setFileList(file);
     }
   };
+
   const FileInput = () => (
     <input
       ref={fileRef}
@@ -71,19 +158,24 @@ const WriteMainContents = ({ openMessage }) => {
       multiple
     />
   );
+
   const clickAddFile = (e) => {
     fileRef.current.click();
   };
+
   const deleteFile = (idx) => {
     // console.log("확인 : " + idx);
     openMessage("파일삭제");
   };
+
   const handleSubmit = () => {
     setAlert(true);
   };
+
   const handleMove = () => {
     history.push("/");
   };
+
   useEffect(() => {
     console.log("확인!!! : " + JSON.stringify(fileList));
   });
@@ -120,8 +212,32 @@ const WriteMainContents = ({ openMessage }) => {
         <p className="headText">요청 제목</p>
         <TextField variant="basic" height={"36px"} width={"100%"} />
       </div>
-      <div className="headGap">
+      <div className="headGap" style={{ alignItems: "flex-start" }}>
         <p className="headText">요청 내용</p>
+        <JoditEditor
+          config={editorConfigList}
+          ref={editor}
+          value={editValue}
+          onBlur={(newContent) => {
+            let _newContent = newContent
+              .replaceAll("border: 1px solid black;", "")
+              .replaceAll('td style="', 'td style="border: 1px solid black;')
+              .replaceAll("color: rgb(51, 51, 51);", "")
+              .replaceAll("font-size: 14px; font-style: normal;", "")
+              .replaceAll("font-variant-ligatures: normal;", "")
+              .replaceAll("text-align: start; text-indent: 0px;", "")
+              .replaceAll("font-variant-caps: normal;", "")
+              .replaceAll("font-weight: 400;", "")
+              .replaceAll("text-transform: none; widows: 2;", "")
+              .replaceAll(
+                "font-family: &quot;Noto Sans KR&quot;, sans-serif;",
+                ""
+              );
+            setEditValue(newContent);
+          }}
+          // value={writeInfo.htmCon || ""}
+          // onBlur={(newContent) => writeChange("htmCon", newContent || "")}
+        />
       </div>
       <div className="headGap">
         <p className="headText"></p>
@@ -135,18 +251,21 @@ const WriteMainContents = ({ openMessage }) => {
           size="small"
           width="fit-content"
           onClick={(e) => clickAddFile(e)}
+          style={{ minWidth: "100px" }}
         >
           파일첨부
         </Button>
-        <FileInput />
-        {fileList.map((item, idx) => (
-          <div className="fileGap">
-            <p className="body2Regular decoration_underline textGrayScale700">
-              {item.dataRealNm}
-            </p>
-            <img src={deleteIcon} onClick={() => deleteFile(idx)} />
-          </div>
-        ))}
+        <div className="displayFlex" style={{ gap: "15px", flexFlow: "wrap" }}>
+          <FileInput />
+          {fileList.map((item, idx) => (
+            <div className="fileGap">
+              <p className="body2Regular decoration_underline textGrayScale700">
+                {item.dataRealNm}
+              </p>
+              <img src={deleteIcon} onClick={() => deleteFile(idx)} />
+            </div>
+          ))}
+        </div>
       </div>
       <p className="line" />
       <div className="buttonFlowRow">

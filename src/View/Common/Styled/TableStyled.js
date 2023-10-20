@@ -35,6 +35,12 @@ export const TableTrStyled = Styled.div`
       css`
         background: #f9f9f9;
       `}
+      ${(props) =>
+        props.check == true &&
+        props.answer == true &&
+        css`
+          background: #eff7ff;
+        `}
 
 `;
 

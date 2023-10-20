@@ -8,6 +8,7 @@ import Message from "../../Common/Message";
 const WriteMainContainer = () => {
   const history = useHistory();
   const [modal, setModal] = useState(false);
+  const [editValue, setEditValue] = useState("");
   const [message, setMessage] = useState({
     title: "",
     contents: <></>,
@@ -36,6 +37,8 @@ const WriteMainContainer = () => {
       <WriteMainContents
         {...{
           openMessage,
+          editValue,
+          setEditValue,
         }}
       />
       {modal && (

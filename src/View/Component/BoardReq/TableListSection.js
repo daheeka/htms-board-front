@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
+import { DotChips } from "../../Common/Chips";
 import { TableTd, TableTr } from "../../Common/Table";
 import fileIcon from "../../../Image/payday_icon_file_gray700.svg";
-import dotIcom from "../../../Image/payday_common_statuschip_icon16_dot_gray800_notstarted.svg";
-import { useEffect } from "react";
 
 const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
   const [checkedArr, setCheckedArr] = useState([]); // 체크 항목 arr
@@ -80,11 +80,13 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
       boardReqList.forEach((el) => allCheckedList.push(el));
       setCheckItems(checkArray);
       setCheckedArr(allCheckedList);
+      checkList(checkArray);
     }
     // 전체 체크 해제
     else {
       setCheckItems([]);
       setCheckedArr([]);
+      checkList([]);
     }
   };
   const handleReply = (num) => {
@@ -270,40 +272,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                   process={boardDataList[idx].status}
                   table
                 >
-                  {item.status === "1" ? (
-                    <>
-                      <p className="chipText02">
-                        <img
-                          src={dotIcom}
-                          style={{
-                            filter:
-                              "invert(62%) sepia(90%) saturate(7489%) hue-rotate(208deg) brightness(100%) contrast(109%)",
-                          }}
-                        />
-                        처리중
-                      </p>
-                    </>
-                  ) : item.status === "2" ? (
-                    <>
-                      <p className="chipText02">
-                        <img
-                          src={dotIcom}
-                          style={{
-                            filter:
-                              "invert(38%) sepia(83%) saturate(3913%) hue-rotate(145deg) brightness(93%) contrast(96%)",
-                          }}
-                        />
-                        완료
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p className="chipText02">
-                        <img src={dotIcom} />
-                        미처리
-                      </p>
-                    </>
-                  )}
+                  <DotChips process={item.status} />
                 </TableTd>
               )}
               {idex !== 0 &&
@@ -321,41 +290,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                     check={idex === 0}
                     table
                   >
-                    {/* {idex === 3 && (
-                      <>
-                        {item.pos === "0" ? (
-                          <p className="body2Regular">{item[head.key]}</p>
-                        ) : item.pos === "1" ? (
-                          <div className="rowFlowGap02">
-                            <div className="rowFlowGap02">
-                              <p className="chipText">답변</p>
-                              <p className="body2Regular">{item[head.key]}</p>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="rowFlowGap02">
-                            {handleReply(item.pos)}
-                            <div className="rowFlowGap02">
-                              <p className="chipText">답변</p>
-                              <p className="body2Regular">{item[head.key]}</p>
-                            </div>
-                          </div>
-                        )}
-                      </>
-                    )} */}
                     <p className="body2Regular">{item[head.key]}</p>
-                    {/* {idex === 3 && (
-                      <div className="rowFlowGap">
-                        <p className="replyCnt captionBold">{item.reply}</p>
-                        {item.file === true ? (
-                          <>
-                            <img src={fileIcon} className="file" />
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                      </div>
-                    )} */}
                   </TableTd>
                 )}
             </>

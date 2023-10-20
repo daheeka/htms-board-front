@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { ReqMainStyled } from "../Styled/ReqMainStyled";
+import React from "react";
+import { ConfirmMainStyled } from "../Styled/ConfirmMainStyled";
+import ConfirmMainContents from "../../Component/BoardConfirm/ConfirmMainContents";
+import { useState } from "react";
 import { getFormatDate } from "../../Common/Common";
-import ReqMainContents from "../../Component/BoardReq/ReqMainContents";
-import Message from "../../Common/Message";
-import Alert from "../../Common/Alert";
 
-const ReqMainContainer = () => {
+const ConfirmMainContainer = () => {
   let prevDate = new Date();
   prevDate.setMonth(prevDate.getMonth() - 3);
   const [date, setDate] = useState({
@@ -104,69 +103,11 @@ const ReqMainContainer = () => {
       child: "1",
     },
   ]);
-  const [modal, setModal] = useState(false);
-  const [alert, setAlert] = useState(false);
-  const [message, setMessage] = useState({
-    title: "",
-    contents: <></>,
-    flag: "",
-  });
-  const openMessage = (flag, cnt) => {
-    let contents =
-      flag == "선택항목완료" ? (
-        <>항목을 {cnt}개 선택하셨습니다. 완료 처리하시겠습니까?</>
-      ) : flag == "취소" ? (
-        <>
-          입력한 내용이 저장되지 않았습니다.
-          <br />
-          저장하지 않고 나가시겠습니까?
-        </>
-      ) : undefined;
-    setMessage({
-      flag: flag,
-      contents: contents,
-    });
-
-    setModal(true);
-  };
-  const handleCheckEnd = () => {
-    setModal(false);
-    setAlert(true);
-    history.push("/");
-  };
-
   return (
-    <ReqMainStyled>
-      <ReqMainContents {...{ date, setDate, boardReqList, openMessage }} />
-      {modal && (
-        <Message
-          {...message}
-          btn02Name={
-            message.flag == "선택항목완료"
-              ? "완료"
-              : message.flag == "취소"
-              ? "나가기"
-              : undefined
-          }
-          clickCancleBtn={() => setModal(false)}
-          onClick={() => {
-            message.flag == "1"
-              ? writeChange("", "", true)
-              : message.flag == "선택항목완료"
-              ? handleCheckEnd()
-              : history.push("/ㅁㅁㅁ");
-            setModal(false);
-          }}
-        />
-      )}
-      {alert && (
-        <Alert
-          contents={"선택하신 요청이 모두 완료되었습니다."}
-          clickCancleBtn={() => setAlert(false)}
-        />
-      )}
-    </ReqMainStyled>
+    <ConfirmMainStyled>
+      <ConfirmMainContents {...{ date, setDate, boardReqList }} />
+    </ConfirmMainStyled>
   );
 };
 
-export default ReqMainContainer;
+export default ConfirmMainContainer;

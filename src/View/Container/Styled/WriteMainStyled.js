@@ -9,7 +9,7 @@ export const WriteMainStyled = Styled.div`
     .fileFlowRow {
         display: flex;
         flex-direction : row;
-        gap: 15px;
+        gap: 30px;
         align-items: center;
     }
     .buttonFlowRow{

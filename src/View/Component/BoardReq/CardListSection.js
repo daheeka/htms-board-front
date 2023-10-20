@@ -3,8 +3,8 @@ import { useState } from "react";
 import { TableTd, TableTr } from "../../Common/Table";
 import fileIcon from "../../../Image/payday_icon_file_gray700.svg";
 import allowIcon from "../../../Image/payday_icon16_arrow3_right_gray900.svg";
-import dotIcom from "../../../Image/payday_common_statuschip_icon16_dot_gray800_notstarted.svg";
 import { useEffect } from "react";
+import { DotChips } from "../../Common/Chips";
 const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
   const [checkedArr, setCheckedArr] = useState([]); // 체크 항목 arr
   const [checkItems, setCheckItems] = useState([]); // 체크 항목 number
@@ -118,40 +118,7 @@ const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
               조회수 {item.readCount}
             </p>
             <div>
-              {item.status === "1" ? (
-                <>
-                  <p className="chipText02">
-                    <img
-                      src={dotIcom}
-                      style={{
-                        filter:
-                          "invert(62%) sepia(90%) saturate(7489%) hue-rotate(208deg) brightness(100%) contrast(109%)",
-                      }}
-                    />
-                    처리중
-                  </p>
-                </>
-              ) : item.status === "2" ? (
-                <>
-                  <p className="chipText02">
-                    <img
-                      src={dotIcom}
-                      style={{
-                        filter:
-                          "invert(38%) sepia(83%) saturate(3913%) hue-rotate(145deg) brightness(93%) contrast(96%)",
-                      }}
-                    />
-                    완료
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p className="chipText02">
-                    <img src={dotIcom} />
-                    미처리
-                  </p>
-                </>
-              )}
+              <DotChips process={item.status} />
               <p className="captionRegular" style={{ marginTop: "0px" }}>
                 {item.regdate}
               </p>

@@ -9,7 +9,7 @@ import TableListSection from "./TableListSection";
 import ListTab from "../../Common/ListTab";
 import plusIcon from "../../../Image/payday_common_icon16_plus_primary500.svg";
 
-const SelectTableSection = ({ boardReqList }) => {
+const SelectTableSection = ({ boardReqList, openMessage }) => {
   const [modal, setModal] = useState(false);
   const [checkedArr, setCheckedArr] = useState([]); // 체크 항목 arr
   const [checkItems, setCheckItems] = useState([]); // 체크 항목 number
@@ -54,6 +54,7 @@ const SelectTableSection = ({ boardReqList }) => {
   const handleMove = () => {
     history.push("/boardWrite");
   };
+  useEffect(() => {}, [checkedArr, checkItems]);
   return (
     <div>
       <div className="chkFlowRow">
@@ -100,7 +101,7 @@ const SelectTableSection = ({ boardReqList }) => {
           <Button
             children="선택항목완료"
             color="primary50"
-            // onClick={onClick}
+            onClick={() => openMessage("선택항목완료", checkItems.length)}
           />
         </div>
       </div>
