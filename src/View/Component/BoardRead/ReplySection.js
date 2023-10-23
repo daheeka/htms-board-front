@@ -4,23 +4,25 @@ import Button from "../../Common/Button";
 import deleteIcon from "../../../Image/payday_common_icon16_delete_primary500.svg";
 import Switch from "../../Common/Switch";
 
-const ReplySection = ({ openMessage }) => {
+const ReplySection = ({ openMessage, boardReadData }) => {
   return (
     <div className="replyContent">
-      <div className="replyBox">
-        <TextField
-          placeholder={"댓글을 입력하세요."}
-          width={"100%"}
-          variant="basic-none"
-          size="large"
-        />
-        <div className="detailFlowRow02">
-          <Button width="fit-content" variant="file">
-            댓글등록
-          </Button>
-          <Switch label={"문자발송"} />
+      {boardReadData[0].status !== "2" && (
+        <div className="replyBox">
+          <TextField
+            placeholder={"댓글을 입력하세요."}
+            width={"100%"}
+            variant="basic-none"
+            size="large"
+          />
+          <div className="detailFlowRow02">
+            <Button width="fit-content" variant="file">
+              댓글등록
+            </Button>
+            <Switch label={"문자발송"} />
+          </div>
         </div>
-      </div>
+      )}
       <div style={{ width: "100%" }}>
         <div className="reply">
           <div className="displayFlexBetween">
@@ -33,11 +35,13 @@ const ReplySection = ({ openMessage }) => {
                 작성일 2023년 10월 18일 09:36:17
               </p>
             </div>
-            <img
-              src={deleteIcon}
-              className="deleteIcon"
-              onClick={() => openMessage("댓글삭제")}
-            />
+            {boardReadData[0].status !== "2" && (
+              <img
+                src={deleteIcon}
+                className="deleteIcon"
+                onClick={() => openMessage("댓글삭제")}
+              />
+            )}
           </div>
           <p className="body2Regular">댓글 테스트 1</p>
         </div>

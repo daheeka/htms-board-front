@@ -49,6 +49,7 @@ export const TableTdStyled = Styled.div`
     align-items: center;
     gap: 20px;
     max-width: 746px;
+    cursor: pointer;
     ${(props) =>
       props.table == true &&
       css`

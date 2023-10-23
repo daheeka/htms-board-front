@@ -68,6 +68,11 @@ export const ReadMainStyled = Styled.div`
         height: 1px;
         background: #DDD;
     }
+    .timeText {
+        display: flex;
+        flex-direction: row-reverse;
+        color: var(--gray-scale-600, #999);
+    }
     .titleText {
         color: var(--text-black-33, #333);
         font-family: "Pretendard";

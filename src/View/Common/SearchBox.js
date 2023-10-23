@@ -37,6 +37,7 @@ const SearchBox = ({
   ];
   const [startOpen, setStartOpen] = useState(false);
   const [endOpen, setEndOpen] = useState(false);
+  const [option, setOption] = useState("");
   const [classNames, setClassNames] = useState(
     Array(monthArry.length).fill("monthBtn body2Bold")
   );
@@ -105,7 +106,7 @@ const SearchBox = ({
         </div>
       </div>
       <div className="searchRow02">
-        <SelectBox>
+        <SelectBox value={option} onChange={(e) => setOption(e.target.value)}>
           {selectArry.map((v, i) => (
             <option value={v.value} key={i}>
               {v.name}

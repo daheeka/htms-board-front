@@ -1,58 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TableTd, TableTr } from "../../Common/Table";
-import { DotChips } from "../../Common/Chips";
 import fileIcon from "../../../Image/payday_icon_file_gray700.svg";
 import allowIcon from "../../../Image/payday_icon16_arrow3_right_gray900.svg";
-const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
-  const history = useHistory();
-  const [checkedArr, setCheckedArr] = useState([]); // 체크 항목 arr
-  const [checkItems, setCheckItems] = useState([]); // 체크 항목 number
+import { DotChips } from "../../Common/Chips";
+
+const CardListSection = ({ boardReqList }) => {
   const [boardDataList, setBoardDataList] = useState([]);
-  // 체크박스 개별 선택
-  const handleCheck = (checked, num, item) => {
-    if (checked) {
-      checkList([...checkItems, num]);
-      setCheckItems([...checkItems, num]);
-      setCheckedArr([...checkedArr, item]);
-    } else {
-      // 체크 해제
-      checkList(checkItems.filter((el) => el !== num));
-      setCheckItems(checkItems.filter((el) => el !== num));
-      setCheckedArr(checkedArr.filter((el) => el !== item));
-    }
-  };
   const handleReply = (num) => {
     const items = Array.from({ length: num - 1 }, (_, index) => (
       <p key={index}></p>
     ));
     return items;
   };
-  const handleMove = () => {
-    history.push("/boardDetail");
-  };
   useEffect(() => {
-    setCheckItems(setCheckList);
     setBoardDataList(boardReqList);
-  }, [boardReqList, setCheckList]);
+  }, [boardReqList]);
   return (
     <>
       {boardDataList.map((item, idx) => (
-        <TableTr
-          answer={item.pos !== "0"}
-          check={checkItems.includes(boardDataList[idx].boardSeq)}
-        >
-          <TableTd onClick={() => handleMove()}>
-            <input
-              type="checkbox"
-              id={`checkBox_${idx}`}
-              onChange={(e) =>
-                handleCheck(e.target.checked, boardDataList[idx].boardSeq, item)
-              }
-              checked={
-                checkItems.includes(boardDataList[idx].boardSeq) ? true : false
-              }
-            />
+        <TableTr answer={item.pos !== "0"}>
+          <TableTd>
             <div className="displayFlexColumn">
               <p className="captionRegular">{item.workType}</p>
               {item.pos === "0" ? (
@@ -81,16 +48,17 @@ const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
               )}
             </div>
           </TableTd>
-          <TableTd
-            width
-            process={boardDataList[idx].status}
-            onClick={() => handleMove()}
-          >
+          <TableTd>
             <div>
               <div
                 className="displayFlex"
                 style={{ gap: "10px", flexDirection: "row-reverse" }}
               >
+                <DotChips
+                  process={item.status}
+                  finish={true}
+                  time={"0일 0시간"}
+                />
                 <DotChips process={item.status} />
               </div>
               <div className="displayFlex" style={{ gap: "20px" }}>

@@ -13,6 +13,26 @@ const ReadMainContainer = () => {
     contents: <></>,
     flag: "",
   });
+  const [boardReadData, setBoardReadData] = useState([
+    {
+      boardSeq: "1",
+      title: "타이틀1",
+      workType: "월별인사변동자료",
+      readCount: "9",
+      reply: "100",
+      writeId: "aaa",
+      writeNm: "공지메일테스트",
+      target: "",
+      status: "1", // 0 : 미처리, 1 : 처리중, 2 : 처리완료
+      file: true,
+      regdate: "2023.09.28",
+      pos: "0", // 깊이
+      child: "0", // 순서
+      timeout: "0일 0시간",
+      finishDate: "2023년 02일 20일 09:36:17",
+      content: "테스트 입니다.",
+    },
+  ]);
   const openMessage = (flag) => {
     let contents =
       flag == "댓글삭제" ? (
@@ -36,6 +56,7 @@ const ReadMainContainer = () => {
       <ReadMainContents
         {...{
           openMessage,
+          boardReadData,
         }}
       />
       {modal && (

@@ -60,10 +60,10 @@ export const ButtonStyled = styled.button`
       ? css`
           color: #ffffff;
           background: #007aff;
-          :hover {
+          /* &:hover {
             transition: all 0.3s ease 0s;
             background: linear-gradient(90deg, #007aff 0%, #24b6d7 100%);
-          }
+          } */
         `
       : props.variant == "solid" && props.color == "black"
       ? css`

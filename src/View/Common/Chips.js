@@ -5,7 +5,7 @@ import { ChipsStyled } from "./Styled/ChipsStyled";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export const DotChips = ({ process }) => {
+export const DotChips = ({ process, finish, time }) => {
   const [value, setValue] = useState("");
   const handleValue = (process) => {
     if (process === "1") {
@@ -20,9 +20,9 @@ export const DotChips = ({ process }) => {
     handleValue(process);
   }, [process]);
   return (
-    <DotChipsStyled process={process}>
-      <img src={dotIcon} className="iconImg" />
-      {value}
+    <DotChipsStyled process={process} finish={finish}>
+      {finish != true && <img src={dotIcon} className="iconImg" />}
+      {finish != true ? <>{value}</> : <>{time}</>}
     </DotChipsStyled>
   );
 };

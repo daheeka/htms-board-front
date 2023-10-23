@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const DotChipsStyled = styled.div`
   display: flex;
@@ -20,6 +20,13 @@ export const DotChipsStyled = styled.div`
       : props.process === "2"
       ? "#059669"
       : "#545454"};
+  ${(props) =>
+    props.process === "2" &&
+    props.finish === true &&
+    css`
+      background: #ededed;
+      color: #545454;
+    `}
   font-family: "Pretendard";
   font-size: 12px;
   font-style: normal;

@@ -100,14 +100,14 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
   const editor = useRef(null);
   const fileRef = useRef(null);
   const [fileList, setFileList] = useState([]);
-
+  const [reqOption, setReqOption] = useState("writer");
+  const [selectOption, setSelectOption] = useState("1");
   const reqArry = [
     { value: "writer", name: "PP공유" },
     { value: "", name: "전체공유" },
   ];
 
   const selectArry = [
-    { value: "", name: "전체" },
     { value: "1", name: "월별인사변동자료" },
     { value: "2", name: "월별급여변동자료" },
     { value: "3", name: "원천신고자료관련" },
@@ -189,7 +189,10 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
       </div>
       <div className="headGap">
         <p className="headText">요청 형태</p>
-        <SelectBox>
+        <SelectBox
+          value={selectOption}
+          onChange={(e) => setSelectOption(e.target.value)}
+        >
           {selectArry.map((v, i) => (
             <option value={v.value} key={i}>
               {v.name}
@@ -199,7 +202,10 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
       </div>
       <div className="headGap">
         <p className="headText">요청 받는 사람</p>
-        <SelectBox>
+        <SelectBox
+          value={reqOption}
+          onChange={(e) => setReqOption(e.target.value)}
+        >
           {reqArry.map((v, i) => (
             <option value={v.value} key={i}>
               {v.name}

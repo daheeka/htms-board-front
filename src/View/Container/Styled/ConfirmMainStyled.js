@@ -5,4 +5,15 @@ export const ConfirmMainStyled = Styled.div`
     flex-direction: column;
     gap: 30px;
     align-items: center;
+
+    .layoutGap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .pointColor {
+        color : #0069FF;
+    }
 `;

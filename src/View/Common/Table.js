@@ -30,6 +30,7 @@ export const TableTd = ({
   style,
   chipcolor,
   process,
+  onClick,
 }) => {
   return (
     <TableTdStyled
@@ -39,6 +40,7 @@ export const TableTd = ({
       table={table}
       chipcolor={chipcolor}
       process={process}
+      onClick={onClick}
     >
       {children}
     </TableTdStyled>

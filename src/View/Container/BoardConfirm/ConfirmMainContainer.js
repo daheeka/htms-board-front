@@ -21,11 +21,12 @@ const ConfirmMainContainer = () => {
       writeId: "aaa",
       writeNm: "공지메일테스트",
       target: "",
-      status: "1", // 0 : 미처리, 1 : 처리중, 2 : 처리완료
+      status: "2", // 0 : 미처리, 1 : 처리중, 2 : 처리완료
       file: true,
       regdate: "2023.09.28",
       pos: "0", // 깊이
       child: "0", // 순서
+      timeout: "0일 0시간",
     },
     {
       boardSeq: "2",
@@ -41,6 +42,7 @@ const ConfirmMainContainer = () => {
       regdate: "2023.03.10",
       pos: "1",
       child: "1",
+      timeout: "0일 0시간",
     },
     {
       boardSeq: "3",
@@ -56,6 +58,7 @@ const ConfirmMainContainer = () => {
       regdate: "2023.04.15",
       pos: "2",
       child: "2",
+      timeout: "0일 0시간",
     },
     {
       boardSeq: "4",
@@ -71,6 +74,7 @@ const ConfirmMainContainer = () => {
       regdate: "2023.04.15",
       pos: "3",
       child: "3",
+      timeout: "0일 0시간",
     },
     {
       boardSeq: "5",
@@ -81,11 +85,12 @@ const ConfirmMainContainer = () => {
       writeId: "aaa",
       writeNm: "테스트이름",
       target: "김담당",
-      status: "0", // 0 : 미처리, 1 : 처리중, 2 : 처리완료
+      status: "2", // 0 : 미처리, 1 : 처리중, 2 : 처리완료
       file: false,
       regdate: "2023.07.15",
       pos: "0",
       child: "0",
+      timeout: "0일 0시간",
     },
     {
       boardSeq: "6",
@@ -96,11 +101,12 @@ const ConfirmMainContainer = () => {
       writeId: "aaa",
       writeNm: "테스트이름",
       target: "김담당",
-      status: "0", // 0 : 미처리, 1 : 처리중, 2 : 처리완료
+      status: "2", // 0 : 미처리, 1 : 처리중, 2 : 처리완료
       file: false,
       regdate: "2023.07.15",
       pos: "1",
       child: "1",
+      timeout: "0일 0시간",
     },
   ]);
   return (

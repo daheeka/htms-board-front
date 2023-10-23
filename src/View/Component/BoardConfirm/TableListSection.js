@@ -1,38 +1,19 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { DotChips } from "../../Common/Chips";
+import React, { useState, useEffect } from "react";
 import { TableTd, TableTr } from "../../Common/Table";
 import fileIcon from "../../../Image/payday_icon_file_gray700.svg";
+import { DotChips } from "../../Common/Chips";
 
-const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
-  const [checkedArr, setCheckedArr] = useState([]); // 체크 항목 arr
-  const [checkItems, setCheckItems] = useState([]); // 체크 항목 number
+const TableListSection = ({ page, boardReqList }) => {
   const tHeadList = [
-    {
-      title: (
-        <input
-          type="checkbox"
-          onChange={(e) => handleCheckAll(e.target.checked)}
-          checked={
-            checkItems.length === boardReqList.length &&
-            boardReqList.length !== 0
-              ? true
-              : false
-          }
-        />
-      ),
-      key: "check",
-      width: "40px",
-    },
     { title: "번호", key: "no", width: "60px" },
     { title: "형태", key: "workType", width: "150px" },
-    { title: "제목", key: "title", width: "450px" },
+    { title: "제목", key: "title", width: "390px" },
     { title: "요청자", key: "writeNm", width: "120px" },
     { title: "수신자", key: "target", width: "120px" },
     { title: "요청일", key: "regdate", width: "100px" },
     { title: "조회수", key: "readCount", width: "60px" },
     { title: "처리상태", key: "status", width: "100px" },
+    { title: "경과시간", key: "timeout", width: "100px" },
   ];
   const [boardDataList, setBoardDataList] = useState([]);
   const [cntSlice, setCntSlice] = useState([]);
@@ -57,38 +38,6 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
       setCntSlice(cntArr);
     }
   };
-  // 체크박스 개별 선택
-  const handleCheck = (checked, num, item) => {
-    if (checked) {
-      checkList([...checkItems, num]);
-      setCheckItems([...checkItems, num]);
-      setCheckedArr([...checkedArr, item]);
-    } else {
-      // 체크 해제
-      checkList(checkItems.filter((el) => el !== num));
-      setCheckItems(checkItems.filter((el) => el !== num));
-      setCheckedArr(checkedArr.filter((el) => el !== item));
-    }
-  };
-  // 체크박스 전체 선택
-  const handleCheckAll = (checked) => {
-    if (checked) {
-      const checkArray = [];
-      const allCheckedList = []; // 모든 데이터 담는 빈 배열
-      // 전체 체크 박스 체크
-      boardReqList.forEach((el) => checkArray.push(el.boardSeq));
-      boardReqList.forEach((el) => allCheckedList.push(el));
-      setCheckItems(checkArray);
-      setCheckedArr(allCheckedList);
-      checkList(checkArray);
-    }
-    // 전체 체크 해제
-    else {
-      setCheckItems([]);
-      setCheckedArr([]);
-      checkList([]);
-    }
-  };
   const handleReply = (num) => {
     const items = Array.from({ length: num - 1 }, (_, index) => (
       <p key={index}></p>
@@ -96,10 +45,10 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
     return items;
   };
   useEffect(() => {
-    setCheckItems(setCheckList);
     setBoardDataList(boardReqList);
     handleCnt();
-  }, [page, boardReqList, setCheckList]);
+  }, [page, boardReqList]);
+
   return (
     <>
       <TableTr table>
@@ -117,11 +66,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
         ))}
       </TableTr>
       {boardDataList.map((item, idx) => (
-        <TableTr
-          check={checkItems.includes(boardDataList[idx].boardSeq)}
-          answer={item.pos !== "0"}
-          table
-        >
+        <TableTr answer={item.pos !== "0"} table>
           {tHeadList.map((head, idex) => (
             <>
               {idex === 0 && (
@@ -134,39 +79,10 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                   first={idex === 0}
                   check={idex === 0}
                 >
-                  <input
-                    type="checkbox"
-                    id={`checkBox_${idx}`}
-                    onChange={(e) =>
-                      handleCheck(
-                        e.target.checked,
-                        boardDataList[idx].boardSeq,
-                        item
-                      )
-                    }
-                    checked={
-                      checkItems.includes(boardDataList[idx].boardSeq)
-                        ? true
-                        : false
-                    }
-                  />
-                </TableTd>
-              )}
-              {idex === 1 && (
-                <TableTd
-                  key={idx}
-                  style={{
-                    width: tHeadList[idex].width,
-                    minHeight: "34px",
-                  }}
-                  first={idex === 0}
-                  check={idex === 0}
-                  table
-                >
                   <p className="body2Regular">{cntSlice[idx]}</p>
                 </TableTd>
               )}
-              {idex === 3 && (
+              {idex === 2 && (
                 <TableTd
                   key={idx}
                   style={{
@@ -219,7 +135,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                   </>
                 </TableTd>
               )}
-              {idex === 5 && (
+              {idex === 4 && (
                 <TableTd
                   key={idx}
                   style={{
@@ -251,7 +167,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                   )}
                 </TableTd>
               )}
-              {idex === tHeadList.length - 1 && (
+              {idex === tHeadList.length - 2 && (
                 <TableTd
                   key={idx}
                   style={{
@@ -267,10 +183,9 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                 </TableTd>
               )}
               {idex !== 0 &&
-                idex !== 1 &&
-                idex !== 3 &&
-                idex !== 5 &&
-                idex !== tHeadList.length - 1 && (
+                idex !== 2 &&
+                idex !== 4 &&
+                idex !== tHeadList.length - 2 && (
                   <TableTd
                     key={idx}
                     style={{
