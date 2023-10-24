@@ -5,9 +5,9 @@ export const HeaderStyled = Styled.div`
     position: sticky;
     top: 0;
     background-color: #ffffff;
-    height: 96px;
     z-index: 999;
     display: flex;
+    padding: 30px 0px;
     .headerContent {
         min-width: 1200px;
         margin: 0 auto;

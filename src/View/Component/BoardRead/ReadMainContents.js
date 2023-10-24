@@ -3,13 +3,9 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Button from "../../Common/Button";
 import ReplySection from "./ReplySection";
 import { Chips, DotChips } from "../../Common/Chips";
-import { useEffect } from "react";
 
 const ReadMainContents = ({ openMessage, boardReadData }) => {
   const history = useHistory();
-  useEffect(() => {
-    console.log("확인 : " + JSON.stringify(boardReadData[0]));
-  });
   return (
     <div className="detailFlowCol">
       <p className="line" style={{ marginTop: "20px" }} />
@@ -73,7 +69,12 @@ const ReadMainContents = ({ openMessage, boardReadData }) => {
       )}
       <div className="btnFlowRow">
         {boardReadData[0].status !== "2" && (
-          <Button width="fit-content">답변작성</Button>
+          <Button
+            width="fit-content"
+            onClick={() => history.push("/boardWrite")}
+          >
+            답변작성
+          </Button>
         )}
         <Button
           width="fit-content"

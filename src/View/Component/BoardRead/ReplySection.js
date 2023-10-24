@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "../../Common/TextField";
 import Button from "../../Common/Button";
-import deleteIcon from "../../../Image/payday_common_icon16_delete_primary500.svg";
 import Switch from "../../Common/Switch";
+import Reply from "../../Common/Reply";
 
 const ReplySection = ({ openMessage, boardReadData }) => {
+  const [replyContent, setReplyContent] = useState([
+    {
+      boardSeq: "1",
+      writeId: "kdh",
+      writeNm: "강다희",
+      regdate: "2023년 10월 18일 09:36:17",
+      content: "댓글 테스트 1",
+    },
+    {
+      boardSeq: "1",
+      writeId: "kdh",
+      writeNm: "강다희",
+      regdate: "2023년 10월 18일 09:36:17",
+      content: "댓글 테스트 2",
+    },
+    {
+      boardSeq: "1",
+      writeId: "kdh",
+      writeNm: "강다희",
+      regdate: "2023년 10월 18일 09:36:17",
+      content: "댓글 테스트 3",
+    },
+  ]);
   return (
     <div className="replyContent">
       {boardReadData[0].status !== "2" && (
@@ -24,27 +47,14 @@ const ReplySection = ({ openMessage, boardReadData }) => {
         </div>
       )}
       <div style={{ width: "100%" }}>
-        <div className="reply">
-          <div className="displayFlexBetween">
-            <div className="detailFlowRow">
-              <p className="captionRegular">강다희</p>
-              <p
-                className="captionRegular textGrayScale600"
-                style={{ marginTop: "0px" }}
-              >
-                작성일 2023년 10월 18일 09:36:17
-              </p>
-            </div>
-            {boardReadData[0].status !== "2" && (
-              <img
-                src={deleteIcon}
-                className="deleteIcon"
-                onClick={() => openMessage("댓글삭제")}
-              />
-            )}
-          </div>
-          <p className="body2Regular">댓글 테스트 1</p>
-        </div>
+        {replyContent.map((item, idx) => (
+          <Reply
+            status={boardReadData[0].status}
+            onClick={() => openMessage("댓글삭제")}
+            content={item}
+            border={idx === replyContent.length - 1}
+          />
+        ))}
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export const TextFieldStyeld = styled.input`
   line-height: 20px;
   text-align: left;
   padding: 8px;
-  border-radius: 3px;
+  border-radius: 5px;
   border: none;
 
   width: ${(props) => props.width};

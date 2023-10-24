@@ -8,6 +8,8 @@ import HeaderContainer from "./Container/HeaderContainer";
 import WriteMainContainer from "./Container/BoardWrite/WriteMainContainer";
 import ReadMainContainer from "./Container/BoardRead/ReadMainContainer";
 import ConfirmMainContainer from "./Container/BoardConfirm/ConfirmMainContainer";
+import DepartmentContainer from "./Container/DepartmentManager/DepartmentContainer";
+import DepartmentHeaderContainer from "./Container/DepartmentHeaderContainer";
 
 const MainRoute = () => {
   const { login, setLogin } = useContext(AppContext);
@@ -17,7 +19,12 @@ const MainRoute = () => {
     bodyContainer.scrollTop = 0;
   }, [loc.pathname]);
 
-  return (
+  return loc.pathname.indexOf("Department") != -1 ? (
+    <div id="bodyContainer">
+      <DepartmentHeaderContainer />
+      <Route path={"/boardDepartment"} component={DepartmentContainer} />
+    </div>
+  ) : (
     <div id="bodyContainer">
       <HeaderContainer />
       <Route path={["/", "/Main"]} component={ReqMainContainer} exact={true} />

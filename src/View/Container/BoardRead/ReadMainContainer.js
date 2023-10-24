@@ -26,7 +26,7 @@ const ReadMainContainer = () => {
       status: "1", // 0 : 미처리, 1 : 처리중, 2 : 처리완료
       file: true,
       regdate: "2023.09.28",
-      pos: "0", // 깊이
+      pos: "1", // 깊이
       child: "0", // 순서
       timeout: "0일 0시간",
       finishDate: "2023년 02일 20일 09:36:17",

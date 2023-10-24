@@ -49,11 +49,6 @@ export const ReadMainStyled = Styled.div`
         background: var(--surface-white, #FFF);
         width: 100%;
     }
-    .reply {
-        padding: 10px;
-        width: 100%;
-        border-bottom: 1px solid var(--gray-scale-400, #DDD);
-    }
     .fileBox {
         display: flex;
         padding: 15px 20px;

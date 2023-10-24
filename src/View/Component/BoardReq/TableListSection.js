@@ -1,11 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { DotChips } from "../../Common/Chips";
 import { TableTd, TableTr } from "../../Common/Table";
 import fileIcon from "../../../Image/payday_icon_file_gray700.svg";
 
 const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
+  const history = useHistory();
   const [checkedArr, setCheckedArr] = useState([]); // 체크 항목 arr
   const [checkItems, setCheckItems] = useState([]); // 체크 항목 number
   const tHeadList = [
@@ -154,6 +154,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
               )}
               {idex === 1 && (
                 <TableTd
+                  onClick={() => history.push("/boardDetail")}
                   key={idx}
                   style={{
                     width: tHeadList[idex].width,
@@ -168,6 +169,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
               )}
               {idex === 3 && (
                 <TableTd
+                  onClick={() => history.push("/boardDetail")}
                   key={idx}
                   style={{
                     width: tHeadList[idex].width,
@@ -229,6 +231,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                   first={idex === 0}
                   check={idex === 0}
                   table
+                  onClick={() => history.push("/boardDetail")}
                 >
                   {item.target === "" ? (
                     <>
@@ -262,6 +265,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                   check={idex === 0}
                   process={boardDataList[idx].status}
                   table
+                  onClick={() => history.push("/boardDetail")}
                 >
                   <DotChips process={item.status} />
                 </TableTd>
@@ -280,6 +284,7 @@ const TableListSection = ({ page, boardReqList, checkList, setCheckList }) => {
                     first={idex === 0}
                     check={idex === 0}
                     table
+                    onClick={() => history.push("/boardDetail")}
                   >
                     <p className="body2Regular">{item[head.key]}</p>
                   </TableTd>

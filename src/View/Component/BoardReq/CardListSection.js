@@ -42,7 +42,7 @@ const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
           answer={item.pos !== "0"}
           check={checkItems.includes(boardDataList[idx].boardSeq)}
         >
-          <TableTd onClick={() => handleMove()}>
+          <TableTd>
             <input
               type="checkbox"
               id={`checkBox_${idx}`}
@@ -53,7 +53,7 @@ const CardListSection = ({ boardReqList, checkList, setCheckList }) => {
                 checkItems.includes(boardDataList[idx].boardSeq) ? true : false
               }
             />
-            <div className="displayFlexColumn">
+            <div className="displayFlexColumn" onClick={() => handleMove()}>
               <p className="captionRegular">{item.workType}</p>
               {item.pos === "0" ? (
                 <p className="body1Regular" style={{ marginTop: "0px" }}>
