@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import DepartmentSection from "./DepartmentSection";
 
-const DepartmentContents = ({ departmentData, employeeData }) => {
+const DepartmentContents = ({
+  setDepartmentData,
+  setEmployeeData,
+  departmentData,
+  employeeData,
+  handleOpen,
+}) => {
   const [manager, setManager] = useState("");
   return (
     <div className="departmentBox">
@@ -11,11 +17,14 @@ const DepartmentContents = ({ departmentData, employeeData }) => {
         departmentData={departmentData}
         managerData={manager}
         setManagerData={setManager}
+        setDepartmentData={setDepartmentData}
       />
       <DepartmentSection
         title={"근로자"}
         placeholder={"이름, 사번을 입력하세요"}
         employeeData={employeeData}
+        handleOpen={handleOpen}
+        setEmployeeData={setEmployeeData}
       />
       <DepartmentSection
         title={"부서별 담당자"}

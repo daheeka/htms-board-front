@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, useContext } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import JoditEditor from "jodit-pro-react";
 import SelectBox from "../../Common/SelectBox";
@@ -6,6 +6,7 @@ import TextField from "../../Common/TextField";
 import Button from "../../Common/Button";
 import { getFormatDate } from "../../Common/Common";
 import Alert from "../../Common/Alert";
+import AlertContext from "../../../AlertContext";
 import Switch from "../../Common/Switch";
 import deleteIcon from "../../../Image/delete.svg";
 
@@ -93,9 +94,15 @@ const editorConfig = {
   // license: "6176S-0Q870-CDNO5-LMBAZ", //reqboard.payday.co.kr
 };
 
-const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
+const WriteMainContents = ({
+  openMessage,
+  editValue,
+  setEditValue,
+  handleWrite,
+}) => {
   const history = useHistory();
-  const [alert, setAlert] = useState(false);
+  const { alertActions } = useContext(AlertContext);
+  const { alertMessage } = alertActions;
   const editorConfigList = useMemo(() => editorConfig, []);
   const editor = useRef(null);
   const fileRef = useRef(null);
@@ -145,6 +152,7 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
       fileUpload(fileObj, idx, file);
     } else {
       setFileList(file);
+      handleWrite("file", file);
     }
   };
 
@@ -169,7 +177,7 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
   };
 
   const handleSubmit = () => {
-    setAlert(true);
+    alertMessage("요청이 등록되었습니다.", "success");
   };
 
   const handleMove = () => {
@@ -191,7 +199,7 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
         <p className="headText">요청 형태</p>
         <SelectBox
           value={selectOption}
-          onChange={(e) => setSelectOption(e.target.value)}
+          onChange={(e) => handleWrite("workType", e.target.value)}
         >
           {selectArry.map((v, i) => (
             <option value={v.value} key={i}>
@@ -212,11 +220,23 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
             </option>
           ))}
         </SelectBox>
-        <Switch label={"문자발송"} />
+        <Switch
+          label={"문자발송"}
+          onChange={(e) => {
+            handleWrite("smsFlag", e.target.checked);
+          }}
+        />
       </div>
       <div className="headGap">
         <p className="headText">요청 제목</p>
-        <TextField variant="basic" height={"36px"} width={"100%"} />
+        <TextField
+          variant="basic"
+          height={"36px"}
+          width={"100%"}
+          onChange={(e) => {
+            handleWrite("title", e.target.value);
+          }}
+        />
       </div>
       <div className="headGap" style={{ alignItems: "flex-start" }}>
         <p className="headText">요청 내용</p>
@@ -241,8 +261,6 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
               );
             setEditValue(newContent);
           }}
-          // value={writeInfo.htmCon || ""}
-          // onBlur={(newContent) => writeChange("htmCon", newContent || "")}
         />
       </div>
       <div className="headGap">
@@ -286,12 +304,6 @@ const WriteMainContents = ({ openMessage, editValue, setEditValue }) => {
           취소
         </Button>
       </div>
-      {alert && (
-        <Alert
-          contents={"요청이 등록되었습니다."}
-          clickCancleBtn={handleMove}
-        />
-      )}
     </div>
   );
 };

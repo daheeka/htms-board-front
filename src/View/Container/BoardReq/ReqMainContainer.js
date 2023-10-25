@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ReqMainStyled } from "../Styled/ReqMainStyled";
 import { getFormatDate } from "../../Common/Common";
 import ReqMainContents from "../../Component/BoardReq/ReqMainContents";
 import Message from "../../Common/Message";
-import Alert from "../../Common/Alert";
+import AlertContext from "../../../AlertContext";
 
 const ReqMainContainer = () => {
   let prevDate = new Date();
@@ -105,7 +105,8 @@ const ReqMainContainer = () => {
     },
   ]);
   const [modal, setModal] = useState(false);
-  const [alert, setAlert] = useState(false);
+  const { alertActions } = useContext(AlertContext);
+  const { alertMessage } = alertActions;
   const [message, setMessage] = useState({
     title: "",
     contents: <></>,
@@ -131,8 +132,7 @@ const ReqMainContainer = () => {
   };
   const handleCheckEnd = () => {
     setModal(false);
-    setAlert(true);
-    history.push("/");
+    alertMessage("선택하신 요청이 모두 완료되었습니다.", "success");
   };
 
   return (
@@ -157,12 +157,6 @@ const ReqMainContainer = () => {
               : history.push("/ㅁㅁㅁ");
             setModal(false);
           }}
-        />
-      )}
-      {alert && (
-        <Alert
-          contents={"선택하신 요청이 모두 완료되었습니다."}
-          clickCancleBtn={() => setAlert(false)}
         />
       )}
     </ReqMainStyled>

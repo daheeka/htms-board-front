@@ -15,19 +15,45 @@ export const PopUpStyled = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  gap: 10px;
   .popUpBox {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-
+  .popUpBox::-webkit-scrollbar {
+    display: none;
+  }
+  .popUpContent {
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 10px;
+    background: var(--gray-scale-100, #f5f5f5);
+    border: 1px solid #fff;
+    width: 390px;
+    min-height: 64px;
+    justify-content: space-between;
+    &:hover {
+      border: 1px solid var(--primary-200, #b2d7ff);
+      background: var(--gray-scale-100, #f5f5f5);
+      box-shadow: 0px 1px 10px 0px rgba(132, 132, 132, 0.15);
+      transition: all 0.3s ease 0s;
+    }
+  }
   .closeImg {
     position: absolute;
     right: 10px;
     top: 10px;
-    :hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
+  }
+  .deleteImg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
   }
 `;

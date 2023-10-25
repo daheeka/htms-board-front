@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { AppContextProvider } from "./AppContext";
 
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
 
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
@@ -19,6 +17,8 @@ import "rsuite/dist/rsuite.css";
 
 import MainRoute from "./View/MainRoute";
 import rootReducer from "./View/modules";
+import { BackDropProvider } from "./BackDropContext";
+import { AlertProvider } from "./AlertContext";
 
 /* 리듀서 스토어 생성 */
 const store = createStore(rootReducer);
@@ -35,8 +35,11 @@ const App = (props) => {
   useEffect(() => {});
   return (
     <AppContextProvider login={login} setLogin={setLogin}>
-      <ToastContainer />
-      <MainRoute />
+      <BackDropProvider>
+        <AlertProvider>
+          <MainRoute />
+        </AlertProvider>
+      </BackDropProvider>
     </AppContextProvider>
   );
 };

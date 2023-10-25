@@ -1,9 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { WriteMainStyled } from "../Styled/WriteMainStyled";
 import WriteMainContents from "../../Component/BoardWrite/WriteMainContents";
 import Message from "../../Common/Message";
+import { useEffect } from "react";
 
 const WriteMainContainer = () => {
   const history = useHistory();
@@ -14,6 +14,33 @@ const WriteMainContainer = () => {
     contents: <></>,
     flag: "",
   });
+  const initData = {
+    writeId: "",
+    writeNm: "",
+    workType: "",
+    target: "",
+    title: "",
+    content: "",
+    file: [],
+    smsFlag: false,
+  };
+  const [writeData, setWriteData] = useState({
+    writeId: "",
+    writeNm: "",
+    workType: "",
+    target: "",
+    title: "",
+    content: "",
+    file: [],
+    smsFlag: false,
+  });
+  const titleRef = useRef(null);
+  const handleWrite = (key, value) => {
+    setWriteData({
+      ...writeData,
+      [key]: value,
+    });
+  };
   const openMessage = (flag) => {
     let contents =
       flag == "파일삭제" ? (
@@ -29,9 +56,13 @@ const WriteMainContainer = () => {
       flag: flag,
       contents: contents,
     });
-
     setModal(true);
   };
+
+  useEffect(() => {
+    console.log("확인 writeData : " + JSON.stringify(writeData));
+    console.log("확인 editValue : " + JSON.stringify(editValue));
+  });
   return (
     <WriteMainStyled>
       <WriteMainContents
@@ -39,6 +70,7 @@ const WriteMainContainer = () => {
           openMessage,
           editValue,
           setEditValue,
+          handleWrite,
         }}
       />
       {modal && (

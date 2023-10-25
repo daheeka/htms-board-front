@@ -48,6 +48,7 @@ export const DepartmentStyled = Styled.div`
     &:hover {
         border: 1px solid var(--primary-200, #B2D7FF);
         box-shadow: 0px 1px 10px 0px rgba(132, 132, 132, 0.15);
+        transition: all 0.3s ease 0s;
     }
  }
  .departmentCard_Active {

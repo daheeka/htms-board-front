@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ReadMainStyled } from "../Styled/ReadMainStyled";
 import ReadMainContents from "../../Component/BoardRead/ReadMainContents";
 import Message from "../../Common/Message";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const ReadMainContainer = () => {
   const history = useHistory();
@@ -51,6 +53,10 @@ const ReadMainContainer = () => {
 
     setModal(true);
   };
+  const bData = useSelector((state) => state.BoardRedux);
+  useEffect(() => {
+    console.log("확인 : " + bData);
+  });
   return (
     <ReadMainStyled>
       <ReadMainContents
