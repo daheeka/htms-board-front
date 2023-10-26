@@ -64,15 +64,20 @@ const SearchBox = ({
       startDate: getFormatDate(stDate, "-"),
       endDate: getFormatDate(lastDayOfMonth, "-"),
     });
-    // const newClassNames = [...classNames];
-    // newClassNames[selectedItem] = "monthBtn body2Bold";
-    // setClassNames(newClassNames);
-    // if (i + 1 == month) {
-    //   // 일단 나중에
-    //   const newClassNames = [...classNames];
-    //   newClassNames[i] = "monthBtn02 body2Bold";
-    //   setClassNames(newClassNames);
-    // }
+    const newClassNames = [...classNames];
+    if (i + 1 == month) {
+      const existingMonthBtn02Index = newClassNames.indexOf(
+        "monthBtn02 body2Bold"
+      );
+      if (existingMonthBtn02Index !== -1) {
+        newClassNames[existingMonthBtn02Index] = "monthBtn body2Bold";
+      }
+      newClassNames[i] = "monthBtn02 body2Bold";
+    } else {
+      newClassNames[i] = "monthBtn body2Bold";
+    }
+
+    setClassNames(newClassNames);
   };
   const handleChange = (e) => {};
   return (
