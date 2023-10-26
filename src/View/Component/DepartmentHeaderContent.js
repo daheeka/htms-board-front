@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const DepartmentHeaderContent = () => {
   const history = useHistory();
   const handleMain = () => {
-    history.push("/boardDepartment");
+    history.push("/");
   };
   return (
     <div className="headerContent">

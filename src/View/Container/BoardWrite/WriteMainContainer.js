@@ -1,9 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { WriteMainStyled } from "../Styled/WriteMainStyled";
 import WriteMainContents from "../../Component/BoardWrite/WriteMainContents";
 import Message from "../../Common/Message";
-import { useEffect } from "react";
 
 const WriteMainContainer = () => {
   const history = useHistory();
@@ -13,6 +12,7 @@ const WriteMainContainer = () => {
     title: "",
     contents: <></>,
     flag: "",
+    idx: "",
   });
   const initData = {
     writeId: "",
@@ -36,12 +36,19 @@ const WriteMainContainer = () => {
   });
   const titleRef = useRef(null);
   const handleWrite = (key, value) => {
-    setWriteData({
-      ...writeData,
-      [key]: value,
-    });
+    if (key === "deleteFile") {
+      setWriteData({
+        ...writeData,
+        file: writeData.file.filter((item, idx) => idx != value),
+      });
+    } else {
+      setWriteData({
+        ...writeData,
+        [key]: value,
+      });
+    }
   };
-  const openMessage = (flag) => {
+  const openMessage = (flag, idx) => {
     let contents =
       flag == "파일삭제" ? (
         <>첨부파일을 삭제하시겠습니까?</>
@@ -55,14 +62,10 @@ const WriteMainContainer = () => {
     setMessage({
       flag: flag,
       contents: contents,
+      idx: idx,
     });
     setModal(true);
   };
-
-  useEffect(() => {
-    console.log("확인 writeData : " + JSON.stringify(writeData));
-    console.log("확인 editValue : " + JSON.stringify(editValue));
-  });
   return (
     <WriteMainStyled>
       <WriteMainContents
@@ -71,6 +74,7 @@ const WriteMainContainer = () => {
           editValue,
           setEditValue,
           handleWrite,
+          writeData,
         }}
       />
       {modal && (
@@ -85,11 +89,11 @@ const WriteMainContainer = () => {
           }
           clickCancleBtn={() => setModal(false)}
           onClick={() => {
-            message.flag == "1"
-              ? writeChange("", "", true)
+            message.flag == "파일삭제"
+              ? handleWrite("deleteFile", message.idx)
               : message.flag == "취소"
               ? history.push("/")
-              : history.push("/ㅁㅁㅁ");
+              : history.push("/");
             setModal(false);
           }}
         />

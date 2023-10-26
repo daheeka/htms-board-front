@@ -1,7 +1,7 @@
 import React from "react";
 import { SwitchStyled } from "./Styled/SwitchStyled";
 
-const Switch = ({ label, onChange }) => {
+const Switch = ({ label, onChange, value }) => {
   return (
     <SwitchStyled>
       <div class="toggle">
@@ -11,6 +11,7 @@ const Switch = ({ label, onChange }) => {
             name="toggle1"
             id="toggle1"
             onChange={onChange}
+            checked={value}
           />
           <span></span>
         </label>

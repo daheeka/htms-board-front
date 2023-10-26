@@ -37,7 +37,11 @@ const ReadMainContents = ({ openMessage, boardReadData }) => {
             </p>
           </div>
           {boardReadData[0].status !== "2" && (
-            <Button width="fit-content" variant="file">
+            <Button
+              width="fit-content"
+              variant="file"
+              onClick={() => history.push("/boardEdit")}
+            >
               수정
             </Button>
           )}

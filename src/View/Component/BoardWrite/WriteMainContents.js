@@ -5,10 +5,10 @@ import SelectBox from "../../Common/SelectBox";
 import TextField from "../../Common/TextField";
 import Button from "../../Common/Button";
 import { getFormatDate } from "../../Common/Common";
-import Alert from "../../Common/Alert";
 import AlertContext from "../../../AlertContext";
 import Switch from "../../Common/Switch";
 import deleteIcon from "../../../Image/delete.svg";
+import { useSelector } from "react-redux";
 
 const editorConfig = {
   // buttons: LineButton,
@@ -99,6 +99,7 @@ const WriteMainContents = ({
   editValue,
   setEditValue,
   handleWrite,
+  writeData,
 }) => {
   const history = useHistory();
   const { alertActions } = useContext(AlertContext);
@@ -106,14 +107,12 @@ const WriteMainContents = ({
   const editorConfigList = useMemo(() => editorConfig, []);
   const editor = useRef(null);
   const fileRef = useRef(null);
-  const [fileList, setFileList] = useState([]);
-  const [reqOption, setReqOption] = useState("writer");
-  const [selectOption, setSelectOption] = useState("1");
+  const [view, setView] = useState(<></>);
   const reqArry = [
-    { value: "writer", name: "PP공유" },
+    { value: "1", name: "PP공유" },
     { value: "", name: "전체공유" },
   ];
-
+  const boardData = useSelector((state) => state.BoardRedux);
   const selectArry = [
     { value: "1", name: "월별인사변동자료" },
     { value: "2", name: "월별급여변동자료" },
@@ -133,7 +132,7 @@ const WriteMainContents = ({
   const fileHandler = (e) => {
     let fileObj = e.target.files;
     let idx = 0;
-    let file = [...fileList];
+    let file = [...writeData.file];
     fileUpload(fileObj, idx, file);
   };
 
@@ -141,7 +140,7 @@ const WriteMainContents = ({
     let _fileObj = { ...fileObj };
     if (_fileObj[idx] != undefined) {
       file.push({
-        ...fileList,
+        ...writeData.file,
         dataRealNm: _fileObj[idx].name,
         htmEditDate: getFormatDate(new Date(), "-", "minutes"),
         htm006: _fileObj[idx].name.split(".")[1],
@@ -151,7 +150,6 @@ const WriteMainContents = ({
       idx = idx + 1;
       fileUpload(fileObj, idx, file);
     } else {
-      setFileList(file);
       handleWrite("file", file);
     }
   };
@@ -172,21 +170,18 @@ const WriteMainContents = ({
   };
 
   const deleteFile = (idx) => {
-    // console.log("확인 : " + idx);
-    openMessage("파일삭제");
+    openMessage("파일삭제", idx);
   };
 
   const handleSubmit = () => {
     alertMessage("요청이 등록되었습니다.", "success");
   };
-
-  const handleMove = () => {
-    history.push("/");
-  };
-
   useEffect(() => {
-    console.log("확인!!! : " + JSON.stringify(fileList));
-  });
+    const parsedContents = React.createElement("div", {
+      dangerouslySetInnerHTML: { __html: editValue },
+    });
+    setView(parsedContents);
+  }, [editValue]);
   return (
     <div className="contentGap">
       <div className="headGap">
@@ -198,7 +193,7 @@ const WriteMainContents = ({
       <div className="headGap">
         <p className="headText">요청 형태</p>
         <SelectBox
-          value={selectOption}
+          value={writeData.workType}
           onChange={(e) => handleWrite("workType", e.target.value)}
         >
           {selectArry.map((v, i) => (
@@ -211,8 +206,8 @@ const WriteMainContents = ({
       <div className="headGap">
         <p className="headText">요청 받는 사람</p>
         <SelectBox
-          value={reqOption}
-          onChange={(e) => setReqOption(e.target.value)}
+          value={writeData.target}
+          onChange={(e) => handleWrite("target", e.target.value)}
         >
           {reqArry.map((v, i) => (
             <option value={v.value} key={i}>
@@ -221,6 +216,7 @@ const WriteMainContents = ({
           ))}
         </SelectBox>
         <Switch
+          value={writeData.smsFlag}
           label={"문자발송"}
           onChange={(e) => {
             handleWrite("smsFlag", e.target.checked);
@@ -233,6 +229,7 @@ const WriteMainContents = ({
           variant="basic"
           height={"36px"}
           width={"100%"}
+          value={writeData.title}
           onChange={(e) => {
             handleWrite("title", e.target.value);
           }}
@@ -281,7 +278,7 @@ const WriteMainContents = ({
         </Button>
         <div className="displayFlex" style={{ gap: "15px", flexFlow: "wrap" }}>
           <FileInput />
-          {fileList.map((item, idx) => (
+          {writeData.file.map((item, idx) => (
             <div className="fileGap">
               <p className="body2Regular decoration_underline textGrayScale700">
                 {item.dataRealNm}

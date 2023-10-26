@@ -1,12 +1,5 @@
 import React from "react";
-export const BOARD_DETAIL_RELOAD = "BOARD_DETAIL_RELOAD";
 export const UPDATE_BOARD_DATA = "UPDATE_BOARD_DATA";
-
-export const boardDataReload = () => {
-  return {
-    type: BOARD_DETAIL_RELOAD,
-  };
-};
 
 export const updateBoardData = (data) => {
   return {
@@ -37,20 +30,16 @@ const initialState = {
   },
 };
 
-const BoardRedux = (state = initialState, action) => {
+const BoardReducer = (state = initialState, action) => {
   switch (action.type) {
-    case BOARD_DETAIL_RELOAD:
-      return {
-        ...state,
-      };
     case UPDATE_BOARD_DATA:
       return {
         ...state,
-        data: action.payload,
+        boardData: action.payload,
       };
     default:
       return state;
   }
 };
 
-export default BoardRedux;
+export default BoardReducer;
