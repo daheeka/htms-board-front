@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TableTd, TableTr } from "../../Common/Table";
 import fileIcon from "../../../Image/payday_icon_file_gray700.svg";
 import { DotChips } from "../../Common/Chips";
@@ -17,6 +18,7 @@ const TableListSection = ({ page, boardReqList }) => {
   ];
   const [boardDataList, setBoardDataList] = useState([]);
   const [cntSlice, setCntSlice] = useState([]);
+  const history = useHistory();
   const handleCnt = () => {
     const cntArray = [];
     const numbers = Array.from(
@@ -78,6 +80,12 @@ const TableListSection = ({ page, boardReqList }) => {
                   }}
                   first={idex === 0}
                   check={idex === 0}
+                  onClick={() =>
+                    history.push({
+                      pathname: "/boardDetail",
+                      state: { data: "2" },
+                    })
+                  }
                 >
                   <p className="body2Regular">{cntSlice[idx]}</p>
                 </TableTd>
@@ -92,6 +100,12 @@ const TableListSection = ({ page, boardReqList }) => {
                   first={idex === 0}
                   check={idex === 0}
                   table
+                  onClick={() =>
+                    history.push({
+                      pathname: "/boardDetail",
+                      state: { data: "2" },
+                    })
+                  }
                 >
                   <>
                     {item.pos === "0" ? (
@@ -145,6 +159,12 @@ const TableListSection = ({ page, boardReqList }) => {
                   first={idex === 0}
                   check={idex === 0}
                   table
+                  onClick={() =>
+                    history.push({
+                      pathname: "/boardDetail",
+                      state: { data: "2" },
+                    })
+                  }
                 >
                   {item.target === "" ? (
                     <>
@@ -178,6 +198,12 @@ const TableListSection = ({ page, boardReqList }) => {
                   check={idex === 0}
                   process={boardDataList[idx].status}
                   table
+                  onClick={() =>
+                    history.push({
+                      pathname: "/boardDetail",
+                      state: { data: "2" },
+                    })
+                  }
                 >
                   <DotChips process={item.status} />
                 </TableTd>
@@ -195,6 +221,12 @@ const TableListSection = ({ page, boardReqList }) => {
                     first={idex === 0}
                     check={idex === 0}
                     table
+                    onClick={() =>
+                      history.push({
+                        pathname: "/boardDetail",
+                        state: { data: "2" },
+                      })
+                    }
                   >
                     <p className="body2Regular">{item[head.key]}</p>
                   </TableTd>

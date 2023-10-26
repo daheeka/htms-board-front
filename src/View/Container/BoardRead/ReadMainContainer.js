@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom";
 import { ReadMainStyled } from "../Styled/ReadMainStyled";
 import ReadMainContents from "../../Component/BoardRead/ReadMainContents";
 import Message from "../../Common/Message";
+import { useEffect } from "react";
 
 const ReadMainContainer = () => {
   const history = useHistory();
+  const loc = useLocation();
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState({
     title: "",
@@ -51,6 +54,13 @@ const ReadMainContainer = () => {
 
     setModal(true);
   };
+  useEffect(() => {
+    if (loc.state?.data === "2") {
+      const updatedData = [...boardReadData];
+      updatedData[0].status = "2";
+      setBoardReadData(updatedData);
+    }
+  }, [loc]);
   return (
     <ReadMainStyled>
       <ReadMainContents
@@ -75,7 +85,7 @@ const ReadMainContainer = () => {
               ? writeChange("", "", true)
               : message.flag == "취소"
               ? history.push("/")
-              : history.push("/임시");
+              : history.push("/boardDetail");
             setModal(false);
           }}
         />

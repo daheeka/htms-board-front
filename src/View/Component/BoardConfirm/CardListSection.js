@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TableTd, TableTr } from "../../Common/Table";
 import fileIcon from "../../../Image/payday_icon_file_gray700.svg";
 import allowIcon from "../../../Image/payday_icon16_arrow3_right_gray900.svg";
 import { DotChips } from "../../Common/Chips";
 
 const CardListSection = ({ boardReqList }) => {
+  const history = useHistory();
   const [boardDataList, setBoardDataList] = useState([]);
   const handleReply = (num) => {
     const items = Array.from({ length: num - 1 }, (_, index) => (
       <p key={index}></p>
     ));
     return items;
+  };
+  const handleMove = () => {
+    history.push({
+      pathname: "/boardDetail",
+      state: { data: "2" },
+    });
   };
   useEffect(() => {
     setBoardDataList(boardReqList);
@@ -19,7 +27,7 @@ const CardListSection = ({ boardReqList }) => {
     <>
       {boardDataList.map((item, idx) => (
         <TableTr answer={item.pos !== "0"}>
-          <TableTd>
+          <TableTd onClick={() => handleMove()}>
             <div className="displayFlexColumn">
               <p className="captionRegular">{item.workType}</p>
               {item.pos === "0" ? (

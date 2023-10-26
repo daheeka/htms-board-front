@@ -22,9 +22,9 @@ const HeaderContents = ({ menuList }) => {
 
   const handleclick = (num) => {
     setActive(num);
-    if (num == 2) {
+    if (num === "2") {
       history.push("/boardConfirm");
-    } else if (num == 0) {
+    } else if (num === "0") {
       history.push("/boardDepartment");
     } else {
       history.push("/");
