@@ -49,7 +49,11 @@ const MainRoute = () => {
   ) : (
     <div id="bodyContainer">
       <HeaderContainer />
-      <Route path={["/", "/Main"]} component={ReqMainContainer} exact={true} />
+      <Route
+        path={["/", "/htms-board-front/"]}
+        component={ReqMainContainer}
+        exact={true}
+      />
       <Route path={"/boardWrite"} component={WriteMainContainer} />
       <Route path={"/boardDetail"} component={ReadMainContainer} />
       <Route path={"/boardConfirm"} component={ConfirmMainContainer} />
